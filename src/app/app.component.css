@@ -5,7 +5,7 @@
   flex-direction: row !important;
 }
 
-button {
+a, button {
   cursor: pointer;
 }
 
