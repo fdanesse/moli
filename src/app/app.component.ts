@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // import { Router } from '@angular/router';
 
-import { LoginComponent } from './views/home/login/login.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 
 @Component({
