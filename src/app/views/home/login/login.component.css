@@ -1,0 +1,41 @@
+
+.btn-google{
+  background: #dd4b39;
+}
+
+.btn-facebook{
+  background: #3b5998;
+}
+
+.btn-twitter{
+  background: #55acee;
+}
+
+button{
+  color: #fff;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 5px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.card {
+  display: inline-block;
+  /* box-shadow: 0.1em 0.1em 0.1em cyan, -0.1em -0.1em 0.1em cyan; */
+  /*background-color: #969696;*/
+}
+
+.card-header {
+  background-color: black;
+  color: white;
+}
+
+.card-body {
+  margin: 10px;
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-flex-direction: column !important;
+  flex-direction: column !important;
+}

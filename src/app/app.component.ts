@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 // import { Router } from '@angular/router';
 
+import { LoginComponent } from './views/home/login/login.component';
+
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+  title = 'MoLi';
   user: any;
 
   constructor (

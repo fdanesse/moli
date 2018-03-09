@@ -5,8 +5,12 @@
   flex-direction: row !important;
 }
 
-a, button {
+a, button, .navbar-brand {
   cursor: pointer;
+}
+
+.navbar-brand:hover {
+  color: cyan;
 }
 
 #footer {
