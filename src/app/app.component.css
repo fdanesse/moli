@@ -16,3 +16,84 @@ a, button, .navbar-brand {
 #footer {
   text-align: center;
 }
+
+app-login {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 100;
+}
+
+/* https://www.w3schools.com/css/css3_animations.asp */
+@keyframes in {
+  0%   {
+    display: inline;
+    opacity: 0.0;
+    top: 150%;
+  }
+  100%  {
+    top: 50%;
+    opacity: 1.0;
+  }
+}
+
+@-moz-keyframes in {
+  0%   {
+    display: inline;
+    opacity: 0.0;
+    top: 150%;
+  }
+  100%  {
+    top: 50%;
+    opacity: 1.0;
+  }
+}
+
+@-webkit-keyframes in {
+  0%   {
+    display: inline;
+    opacity: 0.0;
+    top: 150%;
+  }
+  100%  {
+    top: 50%;
+    opacity: 1.0;
+  }
+}
+
+@keyframes out {
+  0%   {
+    top: 50%;
+    opacity: 1.0;
+  }
+  100%  {
+    top: -50%;
+    opacity: 0.0;
+    display: none;
+  }
+}
+
+@-moz-keyframes out {
+  0%   {
+    top: 50%;
+    opacity: 1.0;
+  }
+  100%  {
+    top: -50%;
+    opacity: 0.0;
+    display: none;
+  }
+}
+@-webkit-keyframes out {
+  0%   {
+    top: 50%;
+    opacity: 1.0;
+  }
+  100%  {
+    top: -50%;
+    opacity: 0.0;
+    display: none;
+  }
+}

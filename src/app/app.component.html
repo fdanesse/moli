@@ -20,7 +20,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link">Login</a>
+        <a class="nav-link" (click)="toggleLoginActive()">Login</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="logout()">Logout</a>
@@ -53,4 +53,4 @@
   <span class="navbar-text">Copyright &copy; 2017-2018 Flavio Danesse Todos los derechos reservados.</span>
 </nav>
 
-<app-login></app-login>
+<app-login id="login"></app-login>

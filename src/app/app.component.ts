@@ -12,11 +12,23 @@ import { LoginComponent } from './views/home/login/login.component';
 })
 export class AppComponent implements OnInit {
   title = 'MoLi';
+  loginActive = false;
   user: any;
 
   constructor (
     // public router: Router
   ) {}
+
+  toggleLoginActive(event) {
+    this.loginActive = !this.loginActive;
+    // http://www.developphp.com/video/JavaScript/Start-Stop-CSS-keyframes-animation-with-JavaScript
+    const login = document.getElementById('login'); // document.querySelector('login');
+    if (this.loginActive) {
+      login.style.animation = 'in 0.3s both';
+    } else {
+      login.style.animation = 'out 0.3s both';
+    }
+  }
 
   actualizarCopyRigth() {
     const footer = document.body.getElementsByClassName('navbar-text')[0];

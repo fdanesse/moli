@@ -23,19 +23,21 @@ button{
 
 .card {
   display: inline-block;
-  /* box-shadow: 0.1em 0.1em 0.1em cyan, -0.1em -0.1em 0.1em cyan; */
-  /*background-color: #969696;*/
+  box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.8);
+  background-color: transparent;
+  border: 0.08em solid black;
 }
 
 .card-header {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
 }
 
 .card-body {
-  margin: 10px;
+  padding: 10px;
   display: -webkit-flex !important;
   display: flex !important;
   -webkit-flex-direction: column !important;
   flex-direction: column !important;
+  background-color: rgba(255, 255, 255, 0.5);
 }
