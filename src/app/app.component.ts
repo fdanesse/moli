@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 // import { Router } from '@angular/router';
 
@@ -18,6 +19,8 @@ export class AppComponent implements OnInit {
   public title = 'MoLi';
   public loginActive = false;
   public user: any;
+
+  private autenticacion: Subscription;
 
   constructor (
     // public router: Router
@@ -43,10 +46,27 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.actualizarCopyRigth();
+
+    this.autenticacion = this.authService.exportAuth().subscribe(user => {
+      this.user = user;
+      // console.log('AuthUser:', this.user);
+      if (this.user) {
+        console.log('LOGIN:', this.user);
+        /*
+        FIXME: Observable de usuario en la base
+        */
+      } else {
+        console.log('LOGOUT:', this.user);
+        /*
+        FIXME: Desubscripcion al Observable de usuario en la base
+        */
+        // this.router.navigate(['/home']);
+      }
+    });
+
   }
 
   logout() {
-    console.log('logout');
     this.authService.logout();
   }
 

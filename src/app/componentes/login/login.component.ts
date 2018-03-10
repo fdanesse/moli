@@ -21,14 +21,16 @@ export class LoginComponent implements OnInit {
   onLogin(provider: string) {
     this.authService.login(provider)
       .then( (user) => {
+        /*
         if (user) {
           const uid = user.user.uid;
           console.log('LOGIN:', uid);
         }
+        */
       })
       .catch( (err) => {
+        confirm ('No fue posible Autenticarse');
         console.log('ERROR:', err);
       });
     }
-
 }
