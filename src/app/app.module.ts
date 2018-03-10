@@ -7,6 +7,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './componentes/login/login.component';
 
+import { AuthService } from './servicios/authservice/auth.service';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -16,9 +20,12 @@ import { LoginComponent } from './componentes/login/login.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

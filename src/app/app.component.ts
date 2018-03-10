@@ -4,19 +4,24 @@ import { Component, OnInit } from '@angular/core';
 
 import { LoginComponent } from './componentes/login/login.component';
 
+import { AuthService } from './servicios/authservice/auth.service';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [AuthService]
 })
 export class AppComponent implements OnInit {
-  title = 'MoLi';
-  loginActive = false;
-  user: any;
+
+  public title = 'MoLi';
+  public loginActive = false;
+  public user: any;
 
   constructor (
     // public router: Router
+    public authService: AuthService
   ) {}
 
   toggleLoginActive(event) {
@@ -42,6 +47,7 @@ export class AppComponent implements OnInit {
 
   logout() {
     console.log('logout');
+    this.authService.logout();
   }
 
 }
