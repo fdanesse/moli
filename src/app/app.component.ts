@@ -6,25 +6,27 @@ import { Subscription } from 'rxjs/Subscription';
 import { LoginComponent } from './componentes/login/login.component';
 
 import { AuthService } from './servicios/authservice/auth.service';
+import { UserloggedService } from './servicios/userlogged/userlogged.service';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthService]
+  providers: [AuthService, UserloggedService]
 })
 export class AppComponent implements OnInit {
 
   public title = 'MoLi';
   public loginActive = false;
-  public user: any;
+  // public user: any;
 
   private autenticacion: Subscription;
 
   constructor (
     // public router: Router
-    public authService: AuthService
+    public authService: AuthService,
+    public userLogged: UserloggedService
   ) {}
 
   toggleLoginActive(event) {
@@ -46,17 +48,25 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.actualizarCopyRigth();
+    this.listenAutentication();
+  }
 
+  listenAutentication() {
     this.autenticacion = this.authService.exportAuth().subscribe(user => {
-      this.user = user;
-      // console.log('AuthUser:', this.user);
-      if (this.user) {
-        console.log('LOGIN:', this.user);
-        /*
-        FIXME: Observable de usuario en la base
-        */
+      this.userLogged = user;
+      if (user) {
+        console.log('LOGIN:', user);
+        if (user.emailVerified) {
+          /*
+          FIXME: Observable de usuario en la base
+          */
+        } else {
+          confirm('Su email no está validado por el proveedor');
+          this.logout();
+        }
+
       } else {
-        console.log('LOGOUT:', this.user);
+        console.log('LOGOUT:', user);
         /*
         FIXME: Desubscripcion al Observable de usuario en la base
         */
@@ -68,6 +78,7 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    // this.router.navigate(['/home']);
   }
 
 }

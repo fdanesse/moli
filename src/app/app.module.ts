@@ -12,6 +12,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
+import { UserloggedService } from './servicios/userlogged/userlogged.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +28,7 @@ import { environment } from '../environments/environment';
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [AuthService],
+  providers: [AuthService, UserloggedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
