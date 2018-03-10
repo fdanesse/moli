@@ -13,15 +13,16 @@ import { UserloggedService } from './servicios/userlogged/userlogged.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthService, UserloggedService]
+  providers: [AuthService]
 })
 export class AppComponent implements OnInit {
 
   public title = 'MoLi';
   public loginActive = false;
-  // public user: any;
+  public user: any;
 
   private autenticacion: Subscription;
+  public userSubscription: Subscription;
 
   constructor (
     // public router: Router
@@ -48,32 +49,44 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.actualizarCopyRigth();
+    this.listenLogin();
     this.listenAutentication();
   }
 
-  listenAutentication() {
-    this.autenticacion = this.authService.exportAuth().subscribe(user => {
-      this.userLogged = user;
-      if (user) {
-        console.log('LOGIN:', user);
+  listenLogin() {
+    this.userSubscription = this.userLogged.obs.subscribe(res => {
+      this.user = res;
+      if (this.user) {
+        /*
         if (user.emailVerified) {
-          /*
-          FIXME: Observable de usuario en la base
-          */
+            //FIXME: Observable de usuario en la base
+          const authUser = Object.assign({}, user);
+          const { uid, displayName, photoURL, email, emailVerified, phoneNumber } = authUser;
+          const providerId = authUser.providerData[0].providerId;
+          // const usertemp: MoliUser = new MoliUser();
+          // usertemp.setMoliUser({ uid, displayName, photoURL, email, emailVerified, phoneNumber, providerId });
+          // this.setUserFromDataBase(usertemp);
         } else {
           confirm('Su email no está validado por el proveedor');
           this.logout();
         }
-
-      } else {
-        console.log('LOGOUT:', user);
-        /*
-        FIXME: Desubscripcion al Observable de usuario en la base
         */
+      }else {
+        // FIXME: Desubscripcion al Observable de usuario en la base
         // this.router.navigate(['/home']);
       }
     });
+  }
 
+  listenAutentication() {
+    this.autenticacion = this.authService.exportAuth().subscribe(user => {
+      this.userLogged.changeUser(user);
+      if (user) {
+        console.log('LOGIN:', user);
+      } else {
+        console.log('LOGOUT:', user);
+      }
+    });
   }
 
   logout() {
