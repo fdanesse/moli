@@ -7,13 +7,16 @@ import { LoginComponent } from './componentes/login/login.component';
 
 import { AuthService } from './servicios/authservice/auth.service';
 import { UserloggedService } from './servicios/userlogged/userlogged.service';
+import { UserdataService } from './servicios/userdata/userdata.service';
+
+import { MoliUser } from './models/moli-user';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthService]
+  providers: [AuthService, UserdataService]
 })
 export class AppComponent implements OnInit {
 
@@ -22,12 +25,14 @@ export class AppComponent implements OnInit {
   public user: any;
 
   private autenticacion: Subscription;
-  private userSubscription: Subscription;
+  private loginSubscription: Subscription;
+  private userDataSubscription: Subscription;
 
   constructor (
     // public router: Router
     public authService: AuthService,
-    public userLogged: UserloggedService
+    public userLogged: UserloggedService,
+    public userData: UserdataService
   ) {}
 
   toggleLoginActive(event) {
@@ -48,39 +53,71 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    /**
+     * listenAutentication:
+     *    Cuando El usuario se autentica, se convierten los datos al tipo MoliUser,
+     *    y se actualizan los datos en el servicio userLogged, entonces:
+     * listenLogin:
+     *    si no emailVerified, logout()
+     *    si emailVerified:
+     * listenUserData:
+     *    miramos este user.uid desde la base de datos.
+     */
     this.actualizarCopyRigth();
     this.listenLogin();
     this.listenAutentication();
   }
 
   listenLogin() {
-    this.userSubscription = this.userLogged.obs.subscribe(user => {
+    this.loginSubscription = this.userLogged.obs.subscribe(user => {
+      if (this.userDataSubscription) {
+        this.userDataSubscription.unsubscribe();
+      }
       this.user = user;
       if (this.user) {
-        /*
-        if (user.emailVerified) {
-            //FIXME: Observable de usuario en la base
-          const authUser = Object.assign({}, user);
-          const { uid, displayName, photoURL, email, emailVerified, phoneNumber } = authUser;
-          const providerId = authUser.providerData[0].providerId;
-          // const usertemp: MoliUser = new MoliUser();
-          // usertemp.setMoliUser({ uid, displayName, photoURL, email, emailVerified, phoneNumber, providerId });
-          // this.setUserFromDataBase(usertemp);
-        } else {
-          confirm('Su email no está validado por el proveedor');
+        if (!this.user.emailVerified) {
           this.logout();
+          confirm('Su email no está validado por el proveedor');
+        }else {
+          this.listenUserData();
         }
-        */
-      }else {
-        // FIXME: Desubscripcion al Observable de usuario en la base
-        // this.router.navigate(['/home']);
+
       }
     });
   }
 
+  listenUserData() {
+    const uid = this.user.uid;
+    this.userDataSubscription = this.userData.obs(uid)
+      .subscribe( action => {
+        const cuentaExiste = action.payload.exists;
+        if (cuentaExiste) {
+          this.user = action.payload.data();
+          // this.router.navigate(['/home']);
+        } else {
+          // this.userData.saveUser(this.user); FIXME: Para tener datos iniciales
+          // this.router.navigate(['/perfil']);
+        }
+      });
+  }
+
   listenAutentication() {
     this.autenticacion = this.authService.obs()
-      .subscribe(user => this.userLogged.changeUser(user));
+      .subscribe(user => {
+        const _user = this.convertUserData(user);
+        this.userLogged.changeUser(_user);
+      });
+    }
+
+  convertUserData (user: any) {
+    const authUser = Object.assign({}, user);
+    const { uid, displayName, photoURL, email, emailVerified, phoneNumber } = authUser;
+    // const providerId = authUser.providerData[0].providerId;
+    const usertemp: MoliUser = new MoliUser();
+    usertemp.setMoliUser({
+      uid, displayName, photoURL, email,
+      emailVerified, phoneNumber }); // , providerId });
+    return usertemp;
   }
 
   logout() {

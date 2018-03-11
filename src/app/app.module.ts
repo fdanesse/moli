@@ -14,6 +14,9 @@ import { environment } from '../environments/environment';
 
 import { UserloggedService } from './servicios/userlogged/userlogged.service';
 
+import { UserdataService } from './servicios/userdata/userdata.service';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 
 @NgModule({
   declarations: [
@@ -26,9 +29,11 @@ import { UserloggedService } from './servicios/userlogged/userlogged.service';
     AppRoutingModule,
 
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+
+    AngularFirestoreModule
   ],
-  providers: [AuthService, UserloggedService],
+  providers: [AuthService, UserloggedService, UserdataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
