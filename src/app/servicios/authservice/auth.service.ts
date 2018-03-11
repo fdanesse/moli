@@ -11,15 +11,15 @@ export class AuthService {
     // firebase.auth().onAuthStateChanged((user) => {
   }
 
-  exportAuth(): Observable<firebase.User> {
-    // this.afAuth.authState.subscribe((user) => {});
+  obs(): Observable<firebase.User> {
     return this.afAuth.authState;
   }
 
   login(provider: string) {
     switch (provider) {
       case 'google': {
-        return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+        return this.afAuth.auth.signInWithPopup(
+          new firebase.auth.GoogleAuthProvider());
       }
     }
   }

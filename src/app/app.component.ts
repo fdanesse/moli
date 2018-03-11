@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   public user: any;
 
   private autenticacion: Subscription;
-  public userSubscription: Subscription;
+  private userSubscription: Subscription;
 
   constructor (
     // public router: Router
@@ -54,8 +54,8 @@ export class AppComponent implements OnInit {
   }
 
   listenLogin() {
-    this.userSubscription = this.userLogged.obs.subscribe(res => {
-      this.user = res;
+    this.userSubscription = this.userLogged.obs.subscribe(user => {
+      this.user = user;
       if (this.user) {
         /*
         if (user.emailVerified) {
@@ -79,14 +79,8 @@ export class AppComponent implements OnInit {
   }
 
   listenAutentication() {
-    this.autenticacion = this.authService.exportAuth().subscribe(user => {
-      this.userLogged.changeUser(user);
-      if (user) {
-        console.log('LOGIN:', user);
-      } else {
-        console.log('LOGOUT:', user);
-      }
-    });
+    this.autenticacion = this.authService.obs()
+      .subscribe(user => this.userLogged.changeUser(user));
   }
 
   logout() {
