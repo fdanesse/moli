@@ -6,6 +6,9 @@ import * as firebase from 'firebase/app';
 
 @Injectable()
 export class AuthService {
+  /*
+  API de autenticación de usuario.
+  */
 
   constructor(public afAuth: AngularFireAuth) {
     // firebase.auth().onAuthStateChanged((user) => {

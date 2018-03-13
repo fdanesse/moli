@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { AuthService } from '../../servicios/authservice/auth.service';
 
@@ -11,6 +11,9 @@ import { AuthService } from '../../servicios/authservice/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  @Output() // https://ciphertrick.com/2017/07/24/parent-child-component-communication-angular/
+  closeEvent: EventEmitter<null> = new EventEmitter<null>(); // creating an output event
+
   constructor(
     public authService: AuthService
   ) { }
@@ -19,18 +22,18 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(provider: string) {
+    this.close();
     this.authService.login(provider)
       .then( (user) => {
-        /*
-        if (user) {
-          const uid = user.user.uid;
-          console.log('LOGIN:', uid);
-        }
-        */
+        // console.log('LOGIN:', user.user.uid);
       })
       .catch( (err) => {
-        confirm ('No fue posible Autenticarse');
-        console.log('ERROR:', err);
+        alert('No fue posible Autenticarse');
+        console.log('AUTH ERROR:', err);
       });
     }
+
+  close() {
+    this.closeEvent.emit(null);
+  }
 }

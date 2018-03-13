@@ -5,7 +5,12 @@ import { MoliUser } from '../../models/moli-user';
 
 @Injectable()
 export class UserloggedService {
-  public user: MoliUser = null;
+  /*
+  Mantiene los datos del usuario autenticado y logueado a través de changeUser(user),
+  pero no tiene relación con los datos almacenados en la base de datos.
+  */
+
+  public user: MoliUser = new MoliUser();
   public _obs = new BehaviorSubject(this.user);
   obs = this._obs.asObservable();
 

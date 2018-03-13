@@ -1,36 +1,15 @@
-
-.btn-google{
-  background: #dd4b39;
-}
-
-.btn-facebook{
-  background: #3b5998;
-}
-
-.btn-twitter{
-  background: #55acee;
-}
-
-button{
-  color: #fff;
-  padding: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin: 5px;
-  text-align: left;
-  cursor: pointer;
-}
-
+/* estructura del Widget de login */
 .card {
   display: inline-block;
-  box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.8);
+  box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.5);
   background-color: transparent;
-  border: 0.08em solid black;
+  border: 0.08em solid white;
 }
 
 .card-header {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(51, 51, 51, 0.8);
   color: white;
+  border: 0.08em solid white;
 }
 
 .card-body {
@@ -41,3 +20,82 @@ button{
   flex-direction: column !important;
   background-color: rgba(255, 255, 255, 0.5);
 }
+
+/* Boton close */
+span {
+  margin-top: 5px;
+  margin-right: 8px;
+}
+.fa-window-close {
+  background-color: white;
+}
+.fa-window-close:hover {
+  color: blue;
+}
+
+/* botones de login */
+button{
+  color: #fff;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 5px;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.5);
+  background-color: transparent;
+}
+
+.btn-google{
+  background: rgba(51, 51, 51, 0.8);
+}
+.btn-google:hover{
+  background: #d62d20;
+}
+
+.btn-facebook{
+  background: rgba(51, 51, 51, 0.8);
+}
+.btn-facebook:hover{
+  background: #3b5998;
+}
+
+.btn-twitter{
+  background: rgba(51, 51, 51, 0.8);
+}
+.btn-twitter:hover{
+  background: #0084b4;
+}
+
+/*
+https://material.io/guidelines/style/color.html#color-color-palette
+*/
+
+/*
+google
+#008744	(0,135,68)
+#0057e7	(0,87,231)
+#d62d20	(214,45,32)
+#ffa700	(255,167,0)
+*/
+/*
+facebook
+#3b5998	(59,89,152)
+#8b9dc3	(139,157,195)
+#dfe3ee	(223,227,238)
+#f7f7f7	(247,247,247)
+*/
+/*
+Twitter Dark Blue
+Hex: #0084b4
+RGB: 0, 132, 180
+182-twitter-blue	Twitter Logo Blue
+Hex: #00aced
+RGB: 0, 172, 237
+292-twitter-verified-blue	Twitter Verified Blue
+Hex: #1dcaff
+RGB: 29, 202, 255
+292-twitter-background-blue	Twitter Background Blue
+Hex: #c0deed
+RGB: 192, 222, 237
+*/

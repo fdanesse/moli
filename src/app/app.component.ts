@@ -22,11 +22,13 @@ export class AppComponent implements OnInit {
 
   public title = 'MoLi';
   public loginActive = false;
-  public user: any;
+  public user: MoliUser = new MoliUser();
 
-  private autenticacion: Subscription;
+  private authSubscription: Subscription;
   private loginSubscription: Subscription;
   private userDataSubscription: Subscription;
+
+  public info_print;
 
   constructor (
     // public router: Router
@@ -35,14 +37,14 @@ export class AppComponent implements OnInit {
     public userData: UserdataService
   ) {}
 
-  toggleLoginActive(event) {
+  toggleLoginActive() {
     this.loginActive = !this.loginActive;
     // http://www.developphp.com/video/JavaScript/Start-Stop-CSS-keyframes-animation-with-JavaScript
     const login = document.getElementById('login'); // document.querySelector('login');
     if (this.loginActive) {
-      login.style.animation = 'in 0.3s both';
+      login.style.animation = 'in 0.5s both';
     } else {
-      login.style.animation = 'out 0.3s both';
+      login.style.animation = 'out 0.5s both';
     }
   }
 
@@ -64,8 +66,19 @@ export class AppComponent implements OnInit {
      *    miramos este user.uid desde la base de datos.
      */
     this.actualizarCopyRigth();
-    this.listenLogin();
     this.listenAutentication();
+    this.listenLogin();
+
+    this.info_print = {
+      Browser_CodeName: navigator.appCodeName,
+      Browser_Name: navigator.appName,
+      Browser_Version: navigator.appVersion,
+      Cookies_Enabled: navigator.cookieEnabled,
+      Browser_Language: navigator.language,
+      Browser_Online: navigator.onLine,
+      Platform: navigator.platform,
+      User_agent_header1: navigator.userAgent,
+      User_agent_header2: navigator.product };
   }
 
   listenLogin() {
@@ -74,25 +87,24 @@ export class AppComponent implements OnInit {
         this.userDataSubscription.unsubscribe();
       }
       this.user = user;
-      if (this.user) {
-        if (!this.user.emailVerified) {
-          this.logout();
-          confirm('Su email no está validado por el proveedor');
-        }else {
-          this.listenUserData();
-        }
-
+      if (this.user.uid && !this.user.emailVerified) {
+        this.logout();
+        alert('Su email no fue validado por el proveedor');
+      }else if (this.user.uid && this.user.emailVerified) {
+        this.listenUserData();
+      }else {
+        this.logout();
       }
     });
   }
 
   listenUserData() {
-    const uid = this.user.uid;
-    this.userDataSubscription = this.userData.obs(uid)
+    this.userDataSubscription = this.userData.obs(this.user.uid)
       .subscribe( action => {
-        const cuentaExiste = action.payload.exists;
-        if (cuentaExiste) {
-          this.user = action.payload.data();
+        if (action.payload.exists) {
+          this.userLogged.changeUser(
+            this.convertUserData(action.payload.data())
+          );
           // this.router.navigate(['/home']);
         } else {
           // this.userData.saveUser(this.user); FIXME: Para tener datos iniciales
@@ -102,10 +114,11 @@ export class AppComponent implements OnInit {
   }
 
   listenAutentication() {
-    this.autenticacion = this.authService.obs()
+    this.authSubscription = this.authService.obs()
       .subscribe(user => {
-        const _user = this.convertUserData(user);
-        this.userLogged.changeUser(_user);
+        this.userLogged.changeUser(
+          this.convertUserData(user)
+        );
       });
     }
 

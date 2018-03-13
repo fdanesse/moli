@@ -10,6 +10,9 @@ import { MoliUser } from '../../models/moli-user';
 
 @Injectable()
 export class UserdataService {
+  /*
+  Es el API de datos del usuario en la base de datos.
+  */
 
   private users_collection: AngularFirestoreCollection<any>;
 

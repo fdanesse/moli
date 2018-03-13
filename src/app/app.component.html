@@ -15,18 +15,19 @@
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
+      <!--
       <li class="nav-item active">
         <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
       </li>
-
-      <li class="nav-item" *ngIf='!user'>
+      -->
+      <li class="nav-item active" *ngIf='!user.uid'>
         <a class="nav-link" (click)="toggleLoginActive()">Login</a>
       </li>
-      <li class="nav-item" *ngIf='user'>
+      <li class="nav-item active" *ngIf='user.uid'>
         <a class="nav-link" (click)="logout()">Logout</a>
       </li>
 
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle"
             href="#" id="navbarDropdownMenuLink"
             data-toggle="dropdown"
@@ -45,14 +46,12 @@
   </div>
 </nav>
 
-<!--
-<div class='row'><pre>USERLOGGED: {{ user | json }}</pre></div>
--->
-
 <router-outlet></router-outlet>
+
+<div class='row navbar navbar-inverse bg-inverse' style='color: white'>{{ info_print | json }}</div>
 
 <nav id="footer" class="navbar fixed-bottom navbar-inverse bg-inverse">
   <span class="navbar-text">Copyright &copy; 2017-2018 Flavio Danesse Todos los derechos reservados.</span>
 </nav>
 
-<app-login id="login"></app-login>
+<app-login id="login" (closeEvent)='toggleLoginActive()'></app-login>
