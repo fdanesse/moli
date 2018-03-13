@@ -107,7 +107,10 @@ export class AppComponent implements OnInit {
           );
           // this.router.navigate(['/home']);
         } else {
-          // this.userData.saveUser(this.user); FIXME: Para tener datos iniciales
+          // this.userData.saveUser(this.user); // FIXME: Para tener datos iniciales
+          this.userLogged.changeUser(
+            this.convertUserData({})
+          );
           // this.router.navigate(['/perfil']);
         }
       });
