@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-// import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { LoginComponent } from './componentes/login/login.component';
 
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   public info_print;
 
   constructor (
-    // public router: Router
+    public router: Router,
     public authService: AuthService,
     public userLogged: UserloggedService,
     public userData: UserdataService
@@ -103,15 +103,11 @@ export class AppComponent implements OnInit {
       .subscribe( action => {
         if (action.payload.exists) {
           this.userLogged.changeUser(
-            this.convertUserData(action.payload.data())
+            this.convertFirebaseDataToMoliUserData(action.payload.data())
           );
-          // this.router.navigate(['/home']);
         } else {
           // this.userData.saveUser(this.user); // FIXME: Para tener datos iniciales
-          this.userLogged.changeUser(
-            this.convertUserData({})
-          );
-          // this.router.navigate(['/perfil']);
+          this.router.navigate(['/perfil']);
         }
       });
   }
@@ -120,25 +116,39 @@ export class AppComponent implements OnInit {
     this.authSubscription = this.authService.obs()
       .subscribe(user => {
         this.userLogged.changeUser(
-          this.convertUserData(user)
+          this.convertDataAuthToMoliUserData(user)
         );
       });
     }
 
-  convertUserData (user: any) {
-    const authUser = Object.assign({}, user);
-    const { uid, displayName, photoURL, email, emailVerified, phoneNumber } = authUser;
-    // const providerId = authUser.providerData[0].providerId;
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/home']);
+  }
+
+  convertDataAuthToMoliUserData (user: any) {
     const usertemp: MoliUser = new MoliUser();
-    usertemp.setMoliUser({
-      uid, displayName, photoURL, email,
-      emailVerified, phoneNumber }); // , providerId });
+    if (user) {
+      const authUser = Object.assign({}, user);
+      const { uid, displayName, photoURL, email, emailVerified, phoneNumber } = authUser;
+      const providerId = authUser.providerData[0].providerId;
+      usertemp.setMoliUser({
+        uid, displayName, photoURL, email,
+        emailVerified, phoneNumber, providerId });
+    }
     return usertemp;
   }
 
-  logout() {
-    this.authService.logout();
-    // this.router.navigate(['/home']);
+  convertFirebaseDataToMoliUserData (user: any) {
+    const usertemp: MoliUser = new MoliUser();
+    if (user) {
+      const authUser = Object.assign({}, user);
+      const { uid, displayName, photoURL, email, emailVerified, phoneNumber, providerId } = authUser;
+      usertemp.setMoliUser({
+        uid, displayName, photoURL, email,
+        emailVerified, phoneNumber, providerId });
+    }
+    return usertemp;
   }
 
 }

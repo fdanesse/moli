@@ -1,0 +1,216 @@
+<!-- FORMS GUIA: https://angular.io/guide/forms -->
+<div class='container-fluid'>
+  <form class='row' novalidate [formGroup]='perfilForm' (ngSubmit)='save()'>
+
+    <fieldset *ngIf='user' class='form-group col-md-4' disabled>
+    <!-- auth user data -->
+      <legend class="text-left principal"><strong>Datos de Autenticación:</strong></legend>
+
+      <div class='alert alert-info'>
+        <p>Los datos de autenticación son proporcionados por el proveedor de tu cuenta.
+          No puedes editarlos aquí.</p>
+      </div>
+
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> Foto de perfil: </strong></legend>
+        <img class='img-thumbnail rounded mx-auto' [src]='user.photoURL'>
+        <input type='text' hidden readonly
+          [(ngModel)]='user.photoURL' formControlName='photoURL'>
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.photoURL.errors'>
+          <p *ngIf='perfilForm.controls.photoURL.errors.required'>Dato Requerido</p>
+        </div>
+      </fieldset>
+
+      <!--
+      <fieldset class='form-group' hidden>
+        <legend class="text-left" hidden> Id de cuenta: </legend>
+      -->
+        <input class='form-control' type='text' hidden
+          [(ngModel)]='user.uid' readonly formControlName='uid'>
+      <!--
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.uid.errors'>
+          <p *ngIf='perfilForm.controls.uid.errors.required'>Dato Requerido</p>
+        </div>
+      </fieldset>
+      -->
+
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> Nickname: </strong></legend>
+        <input class='form-control' type='text'
+          [(ngModel)]='user.displayName' readonly formControlName='displayName'>
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.displayName.errors'>
+          <p *ngIf='perfilForm.controls.displayName.errors.required'>Dato Requerido</p>
+        </div>
+      </fieldset>
+
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> email de cuenta: </strong></legend>
+        <input class='form-control' type='email'
+          [(ngModel)]='user.email' readonly formControlName='email'>
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.email.errors'>
+          <p *ngIf='perfilForm.controls.email.errors.required'>Dato Requerido</p>
+        </div>
+      </fieldset>
+
+      <!--
+      <fieldset class='form-group'>
+        <legend class="text-left"> Cuenta verificada: </legend>
+      -->
+        <input class='form-control' type='text' hidden
+          [(ngModel)]='user.emailVerified' readonly formControlName='emailVerified'>
+      <!--
+          <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.emailVerified.errors'>
+          <p *ngIf='perfilForm.controls.emailVerified.errors.pattern'>Cuenta no verificada</p>
+        </div>
+      </fieldset>
+      -->
+
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> Celular asociado: </strong></legend>
+        <input class='form-control' type='text'
+          [(ngModel)]='user.phoneNumber' readonly formControlName='phoneNumber'>
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.phoneNumber.errors'>
+          <p *ngIf='perfilForm.controls.phoneNumber.errors.required'>Dato Requerido</p>
+        </div>
+      </fieldset>
+
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> Dominio de la cuenta: </strong></legend>
+        <input class='form-control' type='text'
+          [(ngModel)]='user.providerId' readonly formControlName='providerId'>
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.providerId.errors'>
+          <p>Datos Incorrectos</p>
+        </div>
+      </fieldset>
+
+    </fieldset>
+
+    <fieldset *ngIf='user' class='form-group col-md-4'>
+      <!-- personal user data -->
+      <legend class="text-left principal"><strong>Datos Personales:</strong></legend>
+
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> Nombre: </strong></legend>
+          <input class='form-control' type='text' formControlName='nombre'
+          [(ngModel)]='user.nombre' placeholder='Ingresa tu Nombre'>
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.nombre.errors'>
+          <p *ngIf='perfilForm.controls.nombre.errors.required'>Nombre es requerido</p>
+          <p *ngIf='perfilForm.controls.nombre.errors.maxlength'>Demasiado largo</p>
+          <p *ngIf='perfilForm.controls.nombre.errors.pattern'>Palabras de 2 a 15 letras separadas por un espacio</p>
+        </div>
+      </fieldset>
+
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> Apellido: </strong></legend>
+          <input class='form-control' type='text' formControlName='apellido'
+          [(ngModel)]='user.apellido' placeholder='Ingresa tu apellido'>
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.apellido.errors'>
+          <p *ngIf='perfilForm.controls.apellido.errors.required'>Apellido es requerido</p>
+          <p *ngIf='perfilForm.controls.apellido.errors.maxlength'>Demasiado largo</p>
+          <p *ngIf='perfilForm.controls.apellido.errors.pattern'>Palabras de 2 a 15 letras separadas por un espacio</p>
+        </div>
+      </fieldset>
+
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> Cédula de Identidad: </strong></legend>
+          <input class='form-control' type='text' formControlName='ci'
+          [(ngModel)]='user.ci' placeholder='xxxxxxxx'>
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.ci.errors'>
+          <p *ngIf='perfilForm.controls.ci.errors.required'>ci es requerido</p>
+          <p *ngIf='perfilForm.controls.ci.errors.pattern'>8 caracteres numéricos</p>
+        </div>
+      </fieldset>
+
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> Credencial: </strong></legend>
+          <input class='form-control' type='text' formControlName='credencial'
+          [(ngModel)]='user.credencial' placeholder='XXX xxxx'>
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.credencial.errors'>
+          <p *ngIf='perfilForm.controls.credencial.errors.pattern'>3 letras mayúsculas y 4 caracteres numéricos</p>
+        </div>
+      </fieldset>
+
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> Dirección: </strong></legend>
+          <input class='form-control' type='text' formControlName='direccion'
+          [(ngModel)]='user.direccion' placeholder='Calle y nº'>
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.direccion.errors'>
+          <p *ngIf='perfilForm.controls.direccion.errors.maxlength'>Máximo 30 caracteres</p>
+        </div>
+      </fieldset>
+
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> Teléfono de contacto: </strong></legend>
+          <input class='form-control' type='text' formControlName='telefono'
+          [(ngModel)]='user.telefono' placeholder='xxxxxxxxx'>
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.telefono.errors'>
+          <p *ngIf='perfilForm.controls.telefono.errors.pattern'>Número de 8 o 9 cifras</p>
+        </div>
+      </fieldset>
+
+    </fieldset>
+
+    <fieldset *ngIf='user' class='form-group col-md-4'>
+    <!--laboral data-->
+      <legend class="text-left principal"><strong>Datos Laborales:</strong></legend>
+
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> Nº de cobro: </strong></legend>
+        <input class='form-control' type='text' formControlName='ncobro'
+        [(ngModel)]='user.ncobro' placeholder='xxxx'>
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.ncobro.errors'>
+          <p *ngIf='perfilForm.controls.ncobro.errors.required'>Nº de cobro es requerido</p>
+          <p *ngIf='perfilForm.controls.ncobro.errors.pattern'>Número de 4 cifras</p>
+        </div>
+      </fieldset>
+
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> Roles: </strong></legend>
+        <app-multicheckboxcontroller formControlName='roles' [(ngModel)]="user.roles">
+          <app-checkbox *ngFor='let rol of rolesModel' [value]='rol'>{{rol}}</app-checkbox>
+        </app-multicheckboxcontroller>
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.roles.errors'>
+          <p *ngIf='perfilForm.controls.roles.errors.required'>¿Qúe roles ocupas?</p>
+        </div>
+      </fieldset>
+    </fieldset>
+
+    <div class='col-md-12 alert alert-success'>
+      <button [disabled]='(cuentaExiste && perfilForm.pristine) || !perfilForm.valid' type='submit'
+        class='btn btn-success'>Guardar</button>
+      <!--<button type='reset' class='btn btn-warning' (click)='perfilForm.reset()'
+        [disabled]='perfilForm.pristine'>Limpiar Formulario</button>-->
+      <button [disabled]='!cuentaExiste' type='button' class='btn btn-danger'
+        (click)='delete()'>Eliminar</button>
+    </div>
+
+    </form>
+
+  </div>
+
+  <pre>Formulario Válido: {{ perfilForm.status | json }}</pre>
+
+  <div class='row'>
+    <div class='col-md-6'>
+      <h6>Valores en Formulario:</h6>
+      <pre>{{perfilForm.value | json}}</pre></div>
+    <div class='col-md-6'>
+      <h6>Valores en el Modelo de Datos:</h6>
+      <pre>{{user | json}}</pre>
+    </div>
+  </div>

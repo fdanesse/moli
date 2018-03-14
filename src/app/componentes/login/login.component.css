@@ -7,9 +7,8 @@
 }
 
 .card-header {
-  background-color: rgba(51, 51, 51, 0.8);
+  background-color: #3E2723;
   color: white;
-  border: 0.08em solid white;
 }
 
 .card-body {
@@ -18,7 +17,7 @@
   display: flex !important;
   -webkit-flex-direction: column !important;
   flex-direction: column !important;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(141, 110, 99, 0.5);
 }
 
 /* Boton close */
@@ -27,10 +26,11 @@ span {
   margin-right: 8px;
 }
 .fa-window-close {
-  background-color: white;
+  background-color: #3E2723;
+  color: #D7CCC8;
 }
 .fa-window-close:hover {
-  color: blue;
+  color: white;
 }
 
 /* botones de login */
@@ -47,21 +47,21 @@ button{
 }
 
 .btn-google{
-  background: rgba(51, 51, 51, 0.8);
+  background: #795548;
 }
 .btn-google:hover{
   background: #d62d20;
 }
 
 .btn-facebook{
-  background: rgba(51, 51, 51, 0.8);
+  background: #795548;
 }
 .btn-facebook:hover{
   background: #3b5998;
 }
 
 .btn-twitter{
-  background: rgba(51, 51, 51, 0.8);
+  background: #795548;
 }
 .btn-twitter:hover{
   background: #0084b4;

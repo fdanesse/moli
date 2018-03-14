@@ -17,12 +17,20 @@ import { UserloggedService } from './servicios/userlogged/userlogged.service';
 import { UserdataService } from './servicios/userdata/userdata.service';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
+import { PerfilComponent } from './views/perfil/perfil.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RolesService } from './servicios/roles/roles.service';
+import { MulticheckboxcontrollerComponent } from './componentes/multicheckboxcontroller/multicheckboxcontroller.component';
+import { CheckboxComponent } from './componentes/multicheckboxcontroller/checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    PerfilComponent,
+    MulticheckboxcontrollerComponent,
+    CheckboxComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +39,12 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
 
-    AngularFirestoreModule
+    AngularFirestoreModule,
+
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthService, UserloggedService, UserdataService],
+  providers: [AuthService, UserloggedService, UserdataService, RolesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
