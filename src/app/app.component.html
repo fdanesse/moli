@@ -38,9 +38,19 @@
   </div>
 </nav>
 
+<!--
+<pre>aut: {{ aut }} {{ aut2 }} </pre>
+<pre>data: {{ data }} {{ data2 }} </pre>
+-->
+
 <router-outlet></router-outlet>
 
-<div class='row navbar navbar-inverse bg-inverse' style='color: white'>{{ info_print | json }}</div>
+<!--
+<div class='row navbar navbar-inverse bg-inverse' style='color: white'>
+  <h6>app.component:</h6>
+  <pre style='color: white'>{{ user | json }}</pre>
+</div>
+-->
 
 <nav id="footer" class="navbar fixed-bottom navbar-inverse bg-inverse">
   <span class="navbar-text">Copyright &copy; 2017-2018 Flavio Danesse Todos los derechos reservados.</span>

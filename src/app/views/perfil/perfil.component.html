@@ -191,11 +191,11 @@
     </fieldset>
 
     <div class='col-md-12 alert alert-success'>
-      <button [disabled]='(cuentaExiste && perfilForm.pristine) || !perfilForm.valid' type='submit'
+      <button [disabled]='perfilForm.pristine || !perfilForm.valid' type='submit'
         class='btn btn-success'>Guardar</button>
       <!--<button type='reset' class='btn btn-warning' (click)='perfilForm.reset()'
         [disabled]='perfilForm.pristine'>Limpiar Formulario</button>-->
-      <button [disabled]='!cuentaExiste' type='button' class='btn btn-danger'
+      <button type='button' class='btn btn-danger'
         (click)='delete()'>Eliminar</button>
     </div>
 
@@ -203,14 +203,15 @@
 
   </div>
 
+  <!--
   <pre>Formulario Válido: {{ perfilForm.status | json }}</pre>
+  -->
 
+  <!--
   <div class='row'>
     <div class='col-md-6'>
-      <h6>Valores en Formulario:</h6>
-      <pre>{{perfilForm.value | json}}</pre></div>
-    <div class='col-md-6'>
-      <h6>Valores en el Modelo de Datos:</h6>
-      <pre>{{user | json}}</pre>
+      <h6>Valores a Guardar:</h6>
+      <pre>{{ user | json }}</pre>
     </div>
   </div>
+  -->

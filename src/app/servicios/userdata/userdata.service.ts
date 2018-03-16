@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-// import { MoliUser } from '../models/moli-user';
 import { AngularFirestore,
   AngularFirestoreCollection,
   AngularFirestoreDocument } from 'angularfire2/firestore';
@@ -31,5 +30,13 @@ export class UserdataService {
     this.users_collection.doc(user.uid).set( (Object.assign({}, user)) )
       .then(success => console.log('SAVE', success))
       .catch(err => console.log('error en saveUser', err));
+  }
+
+  deleteUser(uid: string) {
+    if (confirm('¿Eliminar Usuario?')) {
+      this.users_collection.doc(uid).delete()
+        .then(success => console.log('DELETE', success))
+        .catch(err => console.log('error en deleteUser', err));
+      }
   }
 }

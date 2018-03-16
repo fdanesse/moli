@@ -16,7 +16,7 @@ import { MoliUser } from './models/moli-user';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthService, UserdataService]
+  providers: [AuthService, UserdataService, UserloggedService]
 })
 export class AppComponent implements OnInit {
 
@@ -25,16 +25,13 @@ export class AppComponent implements OnInit {
   public user: MoliUser = new MoliUser();
 
   private authSubscription: Subscription;
-  private loginSubscription: Subscription;
   private userDataSubscription: Subscription;
-
-  public info_print;
 
   constructor (
     public router: Router,
     public authService: AuthService,
-    public userLogged: UserloggedService,
-    public userData: UserdataService
+    public userLogged: UserloggedService, // Aquí solo escribimos en él con AuthService y UserdataService, pero no lo leemos
+    public userData: UserdataService // Solo leemos para actualizar UserloggedService pero no escribimos
   ) {}
 
   toggleLoginActive() {
@@ -67,58 +64,65 @@ export class AppComponent implements OnInit {
      */
     this.actualizarCopyRigth();
     this.listenAutentication();
-    this.listenLogin();
-
-    this.info_print = {
-      Browser_CodeName: navigator.appCodeName,
-      Browser_Name: navigator.appName,
-      Browser_Version: navigator.appVersion,
-      Cookies_Enabled: navigator.cookieEnabled,
-      Browser_Language: navigator.language,
-      Browser_Online: navigator.onLine,
-      Platform: navigator.platform,
-      User_agent_header1: navigator.userAgent,
-      User_agent_header2: navigator.product };
-  }
-
-  listenLogin() {
-    this.loginSubscription = this.userLogged.obs.subscribe(user => {
-      if (this.userDataSubscription) {
-        this.userDataSubscription.unsubscribe();
-      }
-      this.user = user;
-      if (this.user.uid && !this.user.emailVerified) {
-        this.logout();
-        alert('Su email no fue validado por el proveedor');
-      }else if (this.user.uid && this.user.emailVerified) {
-        this.listenUserData();
-      }else {
-        this.logout();
-      }
-    });
-  }
-
-  listenUserData() {
-    this.userDataSubscription = this.userData.obs(this.user.uid)
-      .subscribe( action => {
-        if (action.payload.exists) {
-          this.userLogged.changeUser(
-            this.convertFirebaseDataToMoliUserData(action.payload.data())
-          );
-        } else {
-          // this.userData.saveUser(this.user); // FIXME: Para tener datos iniciales
-          this.router.navigate(['/perfil']);
-        }
-      });
   }
 
   listenAutentication() {
+    /* Siempre se escucha la autenticación de usuarios:
+        Si es null: user y userLogged = new MoliUser()
+        Si user:
+            Si user.emailVerified:
+                listenUserData()
+            Si no user.emailVerified:
+                user y userLogged = new MoliUser()
+    */
     this.authSubscription = this.authService.obs()
       .subscribe(user => {
-        this.userLogged.changeUser(
-          this.convertDataAuthToMoliUserData(user)
-        );
+        // FIXME: Hay problemas si un nuevo usuario se autentica en la misma máquina?
+        if (this.userDataSubscription) {
+          // Al cambiar el usuario logueado, cambiamos la escucha en la base de datos
+          this.userDataSubscription.unsubscribe();
+        }
+
+        if (user) {
+          if (user.uid && user.emailVerified) {
+            const tempUser: MoliUser = this.convertDataAuthToMoliUserData(user);
+            this.userLogged.changeUser(tempUser);
+            this.user = tempUser;
+            this.listenUserData();
+          }else {
+            this.logout(); // Esto ejecuta de nuevo authSubscription pero sin user
+          }
+        }else {
+          this.userLogged.changeUser(new MoliUser());
+          this.user = new MoliUser();
+        }
+
       });
+    }
+
+    listenUserData() {
+      /*
+      Con un usuario logueado y admitido, nos fijamos si está en la base de datos
+        Si está en la base de datos:
+            this.userLogged.changeUser(user);
+            this.user = user;
+        Si no está:
+            Ir al perfil.
+            Allí los datos iniciales siempre deben tomarse de userLogged,
+      */
+      this.userDataSubscription = this.userData.obs(this.user.uid)
+        .subscribe( action => {
+          if (action.payload.exists) {
+            const tempuser = this.convertFirebaseDataToMoliUserData(action.payload.data());
+            this.userLogged.changeUser(tempuser);
+            this.user = tempuser;
+          } else {
+            const tempUser: MoliUser = this.convertFirebaseDataToAuthData(this.user);
+            this.userLogged.changeUser(tempUser);
+            this.user = tempUser;
+            this.router.navigate(['/perfil']);
+          }
+        });
     }
 
   logout() {
@@ -141,9 +145,14 @@ export class AppComponent implements OnInit {
 
   convertFirebaseDataToMoliUserData (user: any) {
     const usertemp: MoliUser = new MoliUser();
+    usertemp.setMoliUser(user);
+    return usertemp;
+  }
+
+  convertFirebaseDataToAuthData (user: MoliUser) {
+    const usertemp: MoliUser = new MoliUser();
     if (user) {
-      const authUser = Object.assign({}, user);
-      const { uid, displayName, photoURL, email, emailVerified, phoneNumber, providerId } = authUser;
+      const { uid, displayName, photoURL, email, emailVerified, phoneNumber, providerId } = user;
       usertemp.setMoliUser({
         uid, displayName, photoURL, email,
         emailVerified, phoneNumber, providerId });

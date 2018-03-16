@@ -9,19 +9,25 @@ import { RolesService } from '../../servicios/roles/roles.service';
 
 import { FormGroup, FormControl, Validators, Form } from '@angular/forms';
 
+import { UserloggedService } from '../../servicios/userlogged/userlogged.service';
+import { UserdataService } from '../../servicios/userdata/userdata.service';
+
+import { AuthService } from '../../servicios/authservice/auth.service';
+
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css'],
-  providers: [RolesService]
+  providers: [RolesService, UserdataService]
 })
 export class PerfilComponent implements OnInit, OnDestroy {
 
   private rolesSubscription: Subscription;
+  private loginSubscription: Subscription;
 
   public rolesModel: string[] = [];
-  public user: MoliUser = new MoliUser();
+  public user: MoliUser = new MoliUser(); // Datos que se van a almacenar.
 
   /* Comienza con una palabra de entre 3 y 15 caracteres, pueden seguir con varias palabras
   de 2 a 15 caracteres cada una, pero nunca tendrá mñas de un espacio entre ellas y
@@ -39,16 +45,24 @@ export class PerfilComponent implements OnInit, OnDestroy {
   public perfilForm: FormGroup;
 
   constructor(
-    private rolesService: RolesService
+    public authService: AuthService, // Solo para logout al borrar el usuario
+    private rolesService: RolesService,
+    public userLogged: UserloggedService,
+    public userData: UserdataService
   ) { }
 
   ngOnInit() {
     this.settingFormsConstrols();
     this.setRoles();
+    this.listenLogin();
   }
 
   ngOnDestroy() {
     this.rolesSubscription.unsubscribe();
+    /*
+    Solo queremos los datos iniciales por eso nos desubscribimos al recibirlos y no aqui.
+      this.loginSubscription.unsubscribe();
+    */
   }
 
   settingFormsConstrols() {
@@ -97,6 +111,10 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   setRoles() {
+    /*
+    FIXME: hay un error: los roles se actualizan en app.component
+      Esto debiera suceder solo si se guardan los datos en la base de datos
+    */
     this.rolesSubscription = this.rolesService.obs()
       .subscribe(data => {
         if (data) {
@@ -108,12 +126,39 @@ export class PerfilComponent implements OnInit, OnDestroy {
     });
   }
 
+  listenLogin() {
+    this.loginSubscription = this.userLogged.obs.subscribe(user => {
+      this.user = Object.assign({}, user);
+      // La primera vez, user estará vacío, la segunda vez nos desubscribimos
+      if (this.loginSubscription) {
+        this.loginSubscription.unsubscribe();
+      }
+    });
+  }
+
   save() {
-    console.log('SAVE');
+    // Reglas en firebase:
+    // https://firebase.google.com/docs/firestore/security/secure-data?hl=es-419
+    // https://firebase.google.com/docs/firestore/reference/security/?hl=es-419#properties
+    // && get(/databases/$(database)/documents/usuarios/$(userId)).data.uid == userId
+    if (this.perfilForm.valid) {
+      this.userData.saveUser(this.user);
+      // this.userLogged.changeUser(this.user); No debe hacerse, está automatizado en app.component
+      // FIXME: Avisar de datos almacenados.
+      // this.usersService.updateUser(this.dbuser.uid, this.dbuser);
+      // this.router.navigate(['/home']);
+    }
   }
 
   delete() {
-    console.log('DELETE');
+    /*
+    FIXME: Al borrar el usuario, se actualizará userDataSubscription en app.component,
+      lo cual llamaŕa al perfil nuevamente.
+      Los datos del viejo usuario quedarán en userlogged dando la impresión
+      de que el usuario aun existe en la base de datos cuando en realidad solo está logueado,
+      por eso es necesario actualizar userLogged
+    */
+    this.userData.deleteUser(this.user.uid);
   }
 
 }

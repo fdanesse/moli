@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { UserloggedService } from '../../servicios/userlogged/userlogged.service';
 
 
 @Component({
@@ -11,22 +10,26 @@ import { UserloggedService } from '../../servicios/userlogged/userlogged.service
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  public user;
-  public userSubscription: Subscription;
+  // public info_print;
 
-  constructor(
-    public userLogged: UserloggedService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    // FIXME: Solo para probar su funcionamiento
-    this.userSubscription = this.userLogged.obs.subscribe(res => {
-      this.user = res;
-    });
+    /*
+    this.info_print = {
+      Browser_CodeName: navigator.appCodeName,
+      Browser_Name: navigator.appName,
+      Browser_Version: navigator.appVersion,
+      Cookies_Enabled: navigator.cookieEnabled,
+      Browser_Language: navigator.language,
+      Browser_Online: navigator.onLine,
+      Platform: navigator.platform,
+      User_agent_header1: navigator.userAgent,
+      User_agent_header2: navigator.product };
+    */
   }
 
   ngOnDestroy() {
-    this.userSubscription.unsubscribe();
   }
 
 }
