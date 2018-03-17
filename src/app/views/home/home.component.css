@@ -10,15 +10,84 @@
   height: auto;
   z-index: -1;
   overflow: hidden;
-  /*opacity: 0.3;*/
 }
 
-.moli-panel {
-  padding: 10px;
-  background-color: white;/* rgba(150, 150, 255, 0.3); */
-  /* border: 0.1em solid white; */
+
+.container-fluid {
+  margin: 10px;
 }
 
-.moli-panel > p {
+.card {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 0 !important;
+  border: none;
+}
+.card-header {
+  background-color: rgba(255, 255, 255, 0.2);
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-flex-direction: row !important;
+  flex-direction: row !important;
+}
+.card-body {
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.card:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.card-header > h5 {
+  width: 100%;
+}
+.luces {
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-flex-direction: row !important;
+  flex-direction: row !important;
+}
+.x {
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
   margin: 5px;
+}
+
+
+p {
+  margin: 5px;
+}
+
+/* 0277BD */
+.h1 {
+  background-color: rgba(2, 119, 189, 0.5);
+}
+.b1 {
+  background-color: rgba(2, 119, 189, 0.3);
+}
+
+/* 2E7D32 */
+.h2 {
+  background-color: rgba(46, 125, 50, 0.5);
+}
+.b2 {
+  background-color: rgba(46, 125, 50, 0.3);
+}
+
+/* 1565C0 */
+.h3 {
+  background-color: rgba(21, 101, 192, 0.5);
+}
+.b3 {
+  background-color: rgba(21, 101, 192, 0.3);
+}
+
+/* 00695C */
+.h4 {
+  background-color: rgba(0, 105, 92, 0.5);
+}
+.b4 {
+  background-color: rgba(0, 105, 92, 0.3);
 }
