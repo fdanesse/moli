@@ -8,6 +8,14 @@
   padding: 5px;
 }
 
+fieldset {
+  padding: 5px;
+  margin: 5px;
+  border: 0.05em gray solid;
+  border-radius: 5px;
+  background-color: white;
+}
+
 .controles {
   display: -webkit-flex !important;
   display: flex !important;
@@ -32,12 +40,25 @@ form {
 
 .card {
   margin: 5px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 0 !important;
+  border: none;
+}
+.card-header {
+  background-color: rgba(46, 125, 50, 0.5);
+}
+.card-body {
+  padding: 5px !important;
+  background-color: rgba(46, 125, 50, 0.3);
 }
 
-fieldset {
-  padding: 5px;
-  margin: 5px;
-  border: 0.05em gray solid;
-  border-radius: 5px;
-  background-color: white;
+.card:hover {
+  background-color: rgba(255, 255, 255, 1.0);
+}
+
+input {
+  margin: 3%;
+  margin-left: 5%;
+  margin-right: 5%;
+  max-width: 90%;
 }
