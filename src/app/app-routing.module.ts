@@ -4,6 +4,7 @@ import { AuthGuard } from './guardianes/auth.guard';
 import { NotfoundComponent } from './views/notfound/notfound.component';
 import { HomeComponent } from './views/home/home.component';
 import { PerfilComponent } from './views/perfil/perfil.component';
+import { AdminliceosComponent } from './views/adminliceos/adminliceos.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // component: HomeComponent
   { path: 'home', component: HomeComponent },
   { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
-
+  { path: 'adminliceos', component: AdminliceosComponent },
   { path: '**', component: NotfoundComponent }
 ];
 

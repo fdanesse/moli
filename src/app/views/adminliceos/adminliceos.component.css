@@ -1,0 +1,43 @@
+.container-fluid {
+  background-color: rgba(141, 110, 99, 0.3);
+  padding: 5px;
+  margin: 0;
+}
+.row {
+  margin: 0;
+  padding: 5px;
+}
+
+.controles {
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-flex-direction: row !important;
+  flex-direction: row !important;
+  background-color: white;
+}
+button, dropdown {
+  display: inline-block;
+  margin: 5px;
+}
+.dropdown-menu, .dropdown-item {
+  cursor: pointer;
+}
+
+form {
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-flex-direction: row !important;
+  flex-direction: row !important;
+}
+
+.card {
+  margin: 5px;
+}
+
+fieldset {
+  padding: 5px;
+  margin: 5px;
+  border: 0.05em gray solid;
+  border-radius: 5px;
+  background-color: white;
+}

@@ -26,6 +26,8 @@ import { MulticheckboxcontrollerComponent } from './componentes/multicheckboxcon
 import { CheckboxComponent } from './componentes/multicheckboxcontroller/checkbox/checkbox.component';
 import { NotfoundComponent } from './views/notfound/notfound.component';
 
+import { AdminliceosComponent } from './views/adminliceos/adminliceos.component';
+
 // https://hassantariqblog.wordpress.com/2016/10/12/angular2-template-parse-errors-add-custom_elements_schema-to-the-ngmodule-schemas/
 
 
@@ -37,7 +39,8 @@ import { NotfoundComponent } from './views/notfound/notfound.component';
     PerfilComponent,
     MulticheckboxcontrollerComponent,
     CheckboxComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    AdminliceosComponent
   ],
   imports: [
     BrowserModule,
