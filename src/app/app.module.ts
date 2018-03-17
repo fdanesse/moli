@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -26,6 +26,9 @@ import { MulticheckboxcontrollerComponent } from './componentes/multicheckboxcon
 import { CheckboxComponent } from './componentes/multicheckboxcontroller/checkbox/checkbox.component';
 import { NotfoundComponent } from './views/notfound/notfound.component';
 
+// https://hassantariqblog.wordpress.com/2016/10/12/angular2-template-parse-errors-add-custom_elements_schema-to-the-ngmodule-schemas/
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +54,7 @@ import { NotfoundComponent } from './views/notfound/notfound.component';
   providers: [AuthService, UserloggedService, UserdataService, RolesService,
     AuthGuard
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }
