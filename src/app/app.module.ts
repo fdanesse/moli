@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { AuthGuard } from './guardianes/auth.guard';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './componentes/login/login.component';
@@ -22,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RolesService } from './servicios/roles/roles.service';
 import { MulticheckboxcontrollerComponent } from './componentes/multicheckboxcontroller/multicheckboxcontroller.component';
 import { CheckboxComponent } from './componentes/multicheckboxcontroller/checkbox/checkbox.component';
+import { NotfoundComponent } from './views/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { CheckboxComponent } from './componentes/multicheckboxcontroller/checkbo
     LoginComponent,
     PerfilComponent,
     MulticheckboxcontrollerComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ import { CheckboxComponent } from './componentes/multicheckboxcontroller/checkbo
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService, UserloggedService, UserdataService, RolesService],
+  providers: [AuthService, UserloggedService, UserdataService, RolesService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
