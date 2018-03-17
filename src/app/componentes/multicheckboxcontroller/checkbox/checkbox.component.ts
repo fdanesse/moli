@@ -19,7 +19,7 @@ https://medium.com/@mihalcan/angular-multiple-check-boxes-45ad2119e115
       <input type="checkbox" [checked]="isChecked()"/>
       <ng-content></ng-content>
     </div>`,
-  styles: ['.checkbox {margin: 5px; cursor: pointer; background-color: #909090;}']
+  styles: ['.checkbox {margin: 5px; cursor: pointer; background-color: rgba(141, 110, 99, 0.1);}']
 })
 export class CheckboxComponent implements OnInit {
 

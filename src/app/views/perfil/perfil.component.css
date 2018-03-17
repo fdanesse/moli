@@ -60,11 +60,9 @@ img {
 */
 
 .botonera {
-  margin: 5px;
-  display: -webkit-flex !important;
-  display: flex !important;
-  -webkit-flex-direction: row !important;
-  flex-direction: row !important;
+  background-color: rgba(141, 110, 99, 0.3);
+  padding: 5px;
+  margin-bottom: 30px;
 }
 .btn {
   float: right;
