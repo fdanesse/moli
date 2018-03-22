@@ -8,14 +8,17 @@
   padding: 5px;
 }
 
+/* Seleccionar liceo, crear, eliminar */
+.input-group {
+  margin: auto;
+  padding: 5px;
+}
 fieldset {
   padding: 5px;
   margin: 5px;
   border: 0.05em gray solid;
   border-radius: 5px;
-  background-color: white;
 }
-
 .controles {
   display: -webkit-flex !important;
   display: flex !important;
@@ -23,14 +26,11 @@ fieldset {
   flex-direction: row !important;
   background-color: white;
 }
-button, dropdown {
-  display: inline-block;
+button {
   margin: 5px;
 }
-.dropdown-menu, .dropdown-item {
-  cursor: pointer;
-}
 
+/* Formulario */
 form {
   display: -webkit-flex !important;
   display: flex !important;
@@ -40,9 +40,11 @@ form {
 
 .card {
   margin: 5px;
-  background-color: rgba(255, 255, 255, 0.7);
+  /* background-color: rgba(255, 255, 255, 0.7);*/
+  background-color: transparent;
   padding: 0 !important;
   border: none;
+  display: inline-block;
 }
 .card-header {
   background-color: rgba(46, 125, 50, 0.5);
@@ -51,7 +53,6 @@ form {
   padding: 5px !important;
   background-color: rgba(46, 125, 50, 0.3);
 }
-
 .card:hover {
   background-color: rgba(255, 255, 255, 1.0);
 }
@@ -61,4 +62,18 @@ input {
   margin-left: 5%;
   margin-right: 5%;
   max-width: 90%;
+}
+
+/* Horarios */
+.horizontal {
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-flex-direction: row !important;
+  flex-direction: row !important;
+}
+legend {
+  font-size: 1.0em;
+}
+.tablabuttons {
+  text-align: right;
 }

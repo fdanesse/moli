@@ -1,70 +1,108 @@
-
 <div class="container-fluid">
+  <!-- SELECCION DE LICEO -->
   <div class='row'>
-
   <fieldset>
   <div class='controles'>
-
-    <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle"
-      type="button" id="dropdownMenuButton" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      Seleccionar Liceo
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item">Villa Rodriguez</a>
-      <a class="dropdown-item">Liceo Nº 3</a>
-    </div>
+  <div class="input-group">
+    <select class="custom-select" id="inputGroupSelect03">
+      <option selected>Selecciona un Liceo</option>
+      <option value="1">Villa Rodriguez</option>
+      <option value="2">Liceo Nº 3</option>
+    </select>
   </div>
-
-  <button type="button" class="btn btn-success withImageAndIcon">
-    <i class="fa fa-plus-square"></i>
+  <button type="button" class="btn btn-success withImageAndIcon"
+    data-toggle="tooltip" data-placement="top" title="Configurar un nuevo Liceo">
+    <i class="fa fa-plus-square" aria-hidden="true"></i>
   </button>
-
-  <button type="button" class="btn btn-danger withImageAndIcon">
-    <i class="fa fa-minus-circle"></i>
+  <button type="button" class="btn btn-danger withImageAndIcon"
+    data-toggle="tooltip" data-placement="top" title="Borrar el Liceo seleccionado">
+    <i class="fa fa-minus-circle" aria-hidden="true"></i>
   </button>
-
+  </div>
+  </fieldset>
 </div>
-</fieldset>
-</div>
 
-<div class='row'>
-<form action="">
-
+<!-- FORMULARIO -->
+<form class='row' novalidate [formGroup]="liceoForm" (ngSubmit)="save()">
+  <!-- IDENTIDAD -->
   <div class="card p-3">
-    <div class='card-header'>
-      <h5>Identidad</h5>
-    </div>
+    <div class='card-header'><h5>Identidad</h5></div>
     <div class="card-body">
+      <fieldset class='form-group'>
       <input class='form-control' type='text'
-        placeholder='Nombre'>
+        placeholder='Nombre' [(ngModel)]='liceo.nombre' formControlName='nombre'>
       <input class='form-control' type='text'
-        placeholder='Dirección'>
+        placeholder='Dirección' [(ngModel)]='liceo.direccion' formControlName='direccion'>
       <input class='form-control' type='text'
-        placeholder='Localidad'>
+        placeholder='Localidad' [(ngModel)]='liceo.localidad' formControlName='localidad'>
       <input class='form-control' type='text'
-        placeholder='Departamento'>
-
+        placeholder='Departamento' [(ngModel)]='liceo.departamento' formControlName='departamento'>
       <p class='card-text'>Telefonos</p>
       <p class='card-text'>Cuentas de correos y redes sociales</p>
       <p class='card-text'>Sitios webs, picasa y youtube</p>
+    </fieldset>
     </div>
   </div>
 
+  <!-- HORARIOS -->
   <div class="card p-3">
-    <div class='card-header'>
-      <h5>Horarios</h5>
-    </div>
+    <div class='card-header'><h5>Horarios</h5></div>
     <div class="card-body">
-      <h6>Turno 1</h6>
-      <h6>Turno 2</h6>
-      <h6>Turno 3</h6>
-
-      <pre> {{ horarios | json }} </pre>
+      <div class='horizontal'>
+    <fieldset class='form-group'>
+      <legend>Turno 1</legend>
+      <app-turno [registros]='liceo.turno1'></app-turno>
+      <div class='tablabuttons'>
+      <button type="button" class="btn btn-success withImageAndIcon"
+        data-toggle="tooltip" data-placement="top" title="Agregar Hora"
+        (click)="addHora(1)">
+        <i class="fa fa-plus-square" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="btn btn-danger withImageAndIcon"
+        data-toggle="tooltip" data-placement="top" title="Quitar Última Hora"
+        (click)="deleteHora(1)">
+        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+      </button>
+      </div>
+    </fieldset>
+    <fieldset class='form-group'>
+      <legend>Turno 2</legend>
+      <app-turno [registros]='liceo.turno2'></app-turno>
+      <div class='tablabuttons'>
+      <button type="button" class="btn btn-success withImageAndIcon"
+        data-toggle="tooltip" data-placement="top" title="Agregar Hora"
+        (click)="addHora(2)">
+        <i class="fa fa-plus-square" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="btn btn-danger withImageAndIcon"
+        data-toggle="tooltip" data-placement="top" title="Quitar Última Hora"
+        (click)="deleteHora(2)">
+        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+      </button>
+      </div>
+    </fieldset>
+    <fieldset class='form-group'>
+      <legend>Turno 3</legend>
+      <app-turno [registros]='liceo.turno3'></app-turno>
+      <div class='tablabuttons'>
+      <button type="button" class="btn btn-success withImageAndIcon"
+        data-toggle="tooltip" data-placement="top" title="Agregar Hora"
+        (click)="addHora(3)">
+        <i class="fa fa-plus-square" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="btn btn-danger withImageAndIcon"
+        data-toggle="tooltip" data-placement="top" title="Quitar Última Hora"
+        (click)="deleteHora(3)">
+        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+      </button>
+      </div>
+    </fieldset>
+      </div>
     </div>
   </div>
 
+  <!-- GRUPOS -->
+  <!--
   <div class="card p-3">
     <div class='card-header'>
       <h5>Grupos</h5>
@@ -73,7 +111,26 @@
         <pre> {{ grupos | json }} </pre>
     </div>
   </div>
+  -->
+
+  <div class="card p-3">
+    <div class='card-header'>
+      <h5>Liceo:</h5>
+    </div>
+    <div class="card-body">
+      <pre>{{ liceo | json }}</pre>
+    </div>
+  </div>
+
+  <div class="card p-3">
+    <div class='card-header'>
+      <h5>Formulario:</h5>
+    </div>
+    <div class="card-body">
+      <pre>{{ liceoForm.value | json }}</pre>
+    </div>
+  </div>
+
 
 </form>
-</div>
 </div>

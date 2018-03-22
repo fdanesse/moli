@@ -7,7 +7,7 @@ import { CheckboxComponent } from '../../componentes/multicheckboxcontroller/che
 import { MulticheckboxcontrollerComponent } from '../../componentes/multicheckboxcontroller/multicheckboxcontroller.component';
 import { RolesService } from '../../servicios/roles/roles.service';
 
-import { FormGroup, FormControl, Validators, Form } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms'; // Form
 
 import { UserloggedService } from '../../servicios/userlogged/userlogged.service';
 import { UserdataService } from '../../servicios/userdata/userdata.service';

@@ -1,6 +1,6 @@
 <!-- FORMS GUIA: https://angular.io/guide/forms -->
 <div class='container-fluid'>
-  <form class='row' novalidate [formGroup]='perfilForm' (ngSubmit)='save()'>
+  <form class='row' novalidate [formGroup]="perfilForm" (ngSubmit)="save()">
 
     <fieldset *ngIf='user' class='form-group col-md-4' disabled>
     <!-- auth user data -->

@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms'; // Form
+
+import { Liceomodel } from '../../models/liceomodel';
+
+// https://www.concretepage.com/angular-2/angular-2-formgroup-example
+// https://www.youtube.com/watch?v=WjcL09xgo3o
+
+import { TurnoComponent } from '../../componentes/turno/turno.component';
+
 
 @Component({
   selector: 'app-adminliceos',
@@ -7,66 +16,54 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminliceosComponent implements OnInit {
 
-  public horarios = {
-    '1': [
-      '07:00',
-      '07:45',
-      '08:35',
-      '09:25',
-      '10:10',
-      '11:00',
-      '11:50'
-    ],
-    '2': [
-      '12:40',
-      '13:25',
-      '14:15',
-      '15:05',
-      '15:50',
-      '16:40',
-      '17:30'
-    ],
-    '3': [
-      '18:45',
-      '19:15',
-      '19:50',
-      '20:20',
-      '20:55',
-      '21:30',
-      '22:00'
-    ]
-  };
+  public liceo: Liceomodel = new Liceomodel();
 
-  public grupos = {
-    'Turno 1': [
-      '1º 1',
-      '1º 2',
-      '1º 3',
-      '2º 1',
-      '2º 2',
-      '3º 1',
-      '3º 2',
-      '4º 1',
-      '4º 2'
-    ],
-    'Turno 2': [
-      '1º 4',
-      '2º 3',
-      '2º 4',
-      '3º 3',
-      '4º 3'
-    ],
-    'Turno 3': [
-      '1º 5',
-      '2º 5',
-      '3º 4',
-      '4º 4'
-    ]
-  };
+  public turno1 = new FormControl('', [Validators.required]);
+  public turno2 = new FormControl('', [Validators.required]);
+  public turno3 = new FormControl('', [Validators.required]);
 
-  constructor() { }
+  public liceoForm: FormGroup = new FormGroup({
+    nombre: new FormControl('', [Validators.required]),
+    direccion: new FormControl('', [Validators.required]),
+    localidad: new FormControl('', [Validators.required]),
+    departamento: new FormControl('', [Validators.required]),
+    turno1: this.turno1, turno2: this.turno2, turno3: this.turno3
+  });
 
-  ngOnInit() {
+  constructor() {
   }
 
+  addHora(id: number) {
+    switch (id) {
+      case 1:
+        this.liceo.turno1.push(['00:00', '00:45']);
+        break;
+      case 2:
+        this.liceo.turno2.push(['00:00', '00:45']);
+        break;
+      case 3:
+        this.liceo.turno3.push(['00:00', '00:45']);
+        break;
+    }
+  }
+
+  deleteHora(id: number) {
+    switch (id) {
+      case 1:
+        this.liceo.turno1.pop();
+        break;
+      case 2:
+        this.liceo.turno2.pop();
+        break;
+      case 3:
+        this.liceo.turno3.pop();
+        break;
+    }
+  }
+
+  ngOnInit() {
+    this.liceoForm.setValue(this.liceo);
+  }
+
+  save() {}
 }
