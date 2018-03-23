@@ -6,6 +6,7 @@
 .row {
   margin: 0;
   padding: 5px;
+  border: 0.05em gray solid;
 }
 
 /* Seleccionar liceo, crear, eliminar */
@@ -18,13 +19,13 @@ fieldset {
   margin: 5px;
   border: 0.05em gray solid;
   border-radius: 5px;
+  min-width: 200px;
 }
 .controles {
   display: -webkit-flex !important;
   display: flex !important;
   -webkit-flex-direction: row !important;
   flex-direction: row !important;
-  background-color: white;
 }
 button {
   margin: 5px;
@@ -44,7 +45,6 @@ form {
   background-color: transparent;
   padding: 0 !important;
   border: none;
-  display: inline-block;
 }
 .card-header {
   background-color: rgba(46, 125, 50, 0.5);
@@ -53,8 +53,8 @@ form {
   padding: 5px !important;
   background-color: rgba(46, 125, 50, 0.3);
 }
-.card:hover {
-  background-color: rgba(255, 255, 255, 1.0);
+.card-body:hover {
+  background-color: rgba(46, 125, 50, 0.2);
 }
 
 input {
@@ -74,6 +74,24 @@ input {
 legend {
   font-size: 1.0em;
 }
+.pull-right {
+  margin: 3px;
+}
+.fa-plus-square {
+  color: green;
+}
+.fa-minus-circle {
+  color: red;
+}
+.form-group { /* fieldset de horarios */
+  min-height: 400px;
+}
+
+/*
 .tablabuttons {
   text-align: right;
+}
+*/
+.alert {
+  max-width: 200px;
 }

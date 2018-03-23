@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <!-- SELECCION DE LICEO -->
   <div class='row'>
-  <fieldset>
+  <fieldset id='selectorliceal'>
   <div class='controles'>
   <div class="input-group">
     <select class="custom-select" id="inputGroupSelect03">
@@ -50,52 +50,52 @@
     <div class="card-body">
       <div class='horizontal'>
     <fieldset class='form-group'>
-      <legend>Turno 1</legend>
-      <app-turno [registros]='liceo.turno1'></app-turno>
-      <div class='tablabuttons'>
-      <button type="button" class="btn btn-success withImageAndIcon"
-        data-toggle="tooltip" data-placement="top" title="Agregar Hora"
-        (click)="addHora(1)">
-        <i class="fa fa-plus-square" aria-hidden="true"></i>
-      </button>
-      <button type="button" class="btn btn-danger withImageAndIcon"
-        data-toggle="tooltip" data-placement="top" title="Quitar Última Hora"
-        (click)="deleteHora(1)">
-        <i class="fa fa-minus-circle" aria-hidden="true"></i>
-      </button>
+      <legend>Turno 1
+        <span class="pull-right" (click)="deleteHora(1)"
+          data-toggle="tooltip" title="Quitar Última Hora">
+          <i class="fa fa-minus-circle" aria-hidden="true"></i>
+        </span>
+        <span class="pull-right" (click)="addHora(1)"
+          data-toggle="tooltip" title="Agregar Hora">
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+        </span>
+      </legend>
+      <div class='alert alert-warning' *ngIf='liceo.turno1.length==0'>
+        Agrega horas de clase en este turno.
       </div>
+      <app-turno [registros]='liceo.turno1' *ngIf='liceo.turno1.length>0'></app-turno>
     </fieldset>
     <fieldset class='form-group'>
-      <legend>Turno 2</legend>
-      <app-turno [registros]='liceo.turno2'></app-turno>
-      <div class='tablabuttons'>
-      <button type="button" class="btn btn-success withImageAndIcon"
-        data-toggle="tooltip" data-placement="top" title="Agregar Hora"
-        (click)="addHora(2)">
-        <i class="fa fa-plus-square" aria-hidden="true"></i>
-      </button>
-      <button type="button" class="btn btn-danger withImageAndIcon"
-        data-toggle="tooltip" data-placement="top" title="Quitar Última Hora"
-        (click)="deleteHora(2)">
-        <i class="fa fa-minus-circle" aria-hidden="true"></i>
-      </button>
+      <legend>Turno 2
+        <span class="pull-right" (click)="deleteHora(2)"
+          data-toggle="tooltip" title="Quitar Última Hora">
+          <i class="fa fa-minus-circle" aria-hidden="true"></i>
+        </span>
+        <span class="pull-right" (click)="addHora(2)"
+          data-toggle="tooltip" title="Agregar Hora">
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+        </span>
+      </legend>
+      <div class='alert alert-warning' *ngIf='liceo.turno2.length==0'>
+        Agrega horas de clase en este turno.
       </div>
+      <app-turno [registros]='liceo.turno2' *ngIf='liceo.turno2.length>0'></app-turno>
     </fieldset>
     <fieldset class='form-group'>
-      <legend>Turno 3</legend>
-      <app-turno [registros]='liceo.turno3'></app-turno>
-      <div class='tablabuttons'>
-      <button type="button" class="btn btn-success withImageAndIcon"
-        data-toggle="tooltip" data-placement="top" title="Agregar Hora"
-        (click)="addHora(3)">
-        <i class="fa fa-plus-square" aria-hidden="true"></i>
-      </button>
-      <button type="button" class="btn btn-danger withImageAndIcon"
-        data-toggle="tooltip" data-placement="top" title="Quitar Última Hora"
-        (click)="deleteHora(3)">
-        <i class="fa fa-minus-circle" aria-hidden="true"></i>
-      </button>
+      <legend>Turno 3
+        <span class="pull-right" (click)="deleteHora(3)"
+          data-toggle="tooltip" title="Quitar Última Hora">
+          <i class="fa fa-minus-circle" aria-hidden="true"></i>
+        </span>
+        <span class="pull-right" (click)="addHora(3)"
+          data-toggle="tooltip" title="Agregar Hora">
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+        </span>
+      </legend>
+      <div class='alert alert-warning' *ngIf='liceo.turno3.length==0'>
+        Agrega horas de clase en este turno.
       </div>
+      <app-turno [registros]='liceo.turno3' *ngIf='liceo.turno3.length>0'></app-turno>
     </fieldset>
       </div>
     </div>
@@ -113,6 +113,9 @@
   </div>
   -->
 
+</form>
+
+<div class='row'>
   <div class="card p-3">
     <div class='card-header'>
       <h5>Liceo:</h5>
@@ -130,7 +133,5 @@
       <pre>{{ liceoForm.value | json }}</pre>
     </div>
   </div>
-
-
-</form>
+</div>
 </div>
