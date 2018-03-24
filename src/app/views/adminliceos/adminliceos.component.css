@@ -52,6 +52,10 @@ form {
   background-color: rgba(46, 125, 50, 0.5);
 }
 .card-body {
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-flex-direction: row !important;
+  flex-direction: row !important;
   padding: 5px !important;
   background-color: rgba(46, 125, 50, 0.3);
 }
@@ -60,19 +64,9 @@ form {
 }
 
 input {
-  margin: 3%;
-  margin-left: 5%;
-  margin-right: 5%;
-  max-width: 90%;
+  margin: 0;
 }
 
-/* Horarios */
-.horizontal { /* contiene los 3 fieldset de horarios */
-  display: -webkit-flex !important;
-  display: flex !important;
-  -webkit-flex-direction: row !important;
-  flex-direction: row !important;
-}
 legend {
   font-size: 1.0em;
 }
@@ -96,4 +90,30 @@ legend {
 
 .alert {
   max-width: 210px;
+}
+
+.iconinputcontainer {
+  margin: 0;
+  padding: 0;
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-flex-direction: row !important;
+  flex-direction: row !important;
+  background-color: white;
+  border: 0.1em gray;
+  border-radius: 5px;
+}
+
+.iconinputcontainer > span {
+  margin: auto;
+  padding: 3px;
+}
+
+.fa-phone-square, .fa-home, .fa-user {
+  color: green;
+  cursor: auto;
+}
+
+.no-form-group {
+  min-height: 0;
 }

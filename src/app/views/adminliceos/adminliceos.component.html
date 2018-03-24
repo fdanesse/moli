@@ -4,17 +4,15 @@
   <fieldset>
   <div class='controles'>
     <div class="input-group">
-      <select class="custom-select">
-        <option selected>Selecciona un Liceo</option>
-        <option value="1">Villa Rodriguez</option>
-        <option value="2">Liceo Nº 3</option>
+      <select class="custom-select" (change)="changedLiceo($event)">
+        <option *ngFor='let lic of misliceos; index as id;' value={{id}}>{{lic}}</option>
       </select>
     </div>
-    <span class="pull-right"
+    <span class="pull-right" (click)="addLiceo()"
       data-toggle="tooltip" title="Crear nuevo Liceo">
       <i class="fa fa-plus-square" aria-hidden="true"></i>
     </span>
-    <span class="pull-right"
+    <span class="pull-right" *ngIf='misliceos.length>0' (click)="deleteLiceo()"
       data-toggle="tooltip" title="Borrar Liceo seleccionado">
       <i class="fa fa-minus-circle" aria-hidden="true"></i>
     </span>
@@ -29,15 +27,84 @@
     <div class='card-header'><h5>Identidad</h5></div>
     <div class="card-body">
       <fieldset class='form-group'>
-      <input class='form-control' type='text'
-        placeholder='Nombre' [(ngModel)]='liceo.nombre' formControlName='nombre'>
-      <input class='form-control' type='text'
-        placeholder='Dirección' [(ngModel)]='liceo.direccion' formControlName='direccion'>
-      <input class='form-control' type='text'
-        placeholder='Localidad' [(ngModel)]='liceo.localidad' formControlName='localidad'>
-      <input class='form-control' type='text'
-        placeholder='Departamento' [(ngModel)]='liceo.departamento' formControlName='departamento'>
-      <p class='card-text'>Telefonos</p>
+
+        <fieldset class='form-group no-form-group'>
+          <legend>Nombre</legend>
+          <div class="iconinputcontainer">
+            <span class="input-group-text"><i class="fa fa-user"></i></span>
+            <input class='form-control' type='text' maxlength="30"
+              placeholder='Nombre' [(ngModel)]='liceo.nombre' formControlName='nombre'>
+          </div>
+          <div class='alert alert-danger'
+            *ngIf='liceoForm.controls.nombre.errors'>
+            <p *ngIf='liceoForm.controls.nombre.errors.required'>Se requiere un nombre</p>
+          </div>
+        </fieldset>
+
+        <fieldset class='form-group no-form-group'>
+          <legend>Dirección</legend>
+          <div class="iconinputcontainer">
+            <span class="input-group-text"><i class="fa fa-home"></i></span>
+            <input class='form-control' type='text' maxlength="30"
+              placeholder='Dirección' [(ngModel)]='liceo.direccion' formControlName='direccion'>
+          </div>
+          <div class='alert alert-danger'
+            *ngIf='liceoForm.controls.direccion.errors'>
+            <p *ngIf='liceoForm.controls.direccion.errors.required'>Se requiere la dirección</p>
+          </div>
+        </fieldset>
+
+        <fieldset class='form-group no-form-group'>
+          <legend>Departamento</legend>
+          <div class="iconinputcontainer">
+            <span class="input-group-text"><i class="fa fa-home"></i></span>
+            <input class='form-control' type='text' maxlength="30"
+              placeholder='Departamento' [(ngModel)]='liceo.departamento' formControlName='departamento'>
+          </div>
+          <div class='alert alert-danger'
+            *ngIf='liceoForm.controls.departamento.errors'>
+            <p *ngIf='liceoForm.controls.departamento.errors.required'>Se requiere el departamento</p>
+          </div>
+        </fieldset>
+
+        <fieldset class='form-group no-form-group'>
+          <legend>Localidad</legend>
+          <div class="iconinputcontainer">
+            <span class="input-group-text"><i class="fa fa-home"></i></span>
+            <input class='form-control' type='text' maxlength="30"
+              placeholder='Localidad' [(ngModel)]='liceo.localidad' formControlName='localidad'>
+          </div>
+          <div class='alert alert-danger'
+            *ngIf='liceoForm.controls.localidad.errors'>
+            <p *ngIf='liceoForm.controls.localidad.errors.required'>Se requiere la localidad</p>
+          </div>
+        </fieldset>
+    </fieldset>
+
+    <fieldset class='form-group'>
+      <fieldset class='form-group no-form-group'>
+        <legend>Telefonos
+          <span class="pull-right"
+            data-toggle="tooltip" title="Eliminar">
+            <i class="fa fa-minus-circle" aria-hidden="true"></i>
+          </span>
+          <span class="pull-right"
+            data-toggle="tooltip" title="Agregar">
+            <i class="fa fa-plus-square" aria-hidden="true"></i>
+          </span>
+        </legend>
+      <div class="iconinputcontainer">
+        <span class="input-group-text"><i class="fa fa-phone-square"></i></span>
+        <input class='form-control' type='text' maxlength="30"
+          placeholder='Telefonos' formControlName='telefonos'>
+      </div>
+      <div class='alert alert-danger'
+        *ngIf='liceoForm.controls.telefonos.errors'>
+        <p *ngIf='liceoForm.controls.telefonos.errors.required'>Se requiere un teléfono</p>
+      </div>
+      </fieldset>
+      <!--<i class="fa fa-at"></i>-->
+
       <p class='card-text'>Cuentas de correos y redes sociales</p>
       <p class='card-text'>Sitios webs, picasa y youtube</p>
     </fieldset>
@@ -48,8 +115,6 @@
   <div class="card p-3">
     <div class='card-header'><h5>Horarios</h5></div>
     <div class="card-body">
-      <div class='horizontal'>
-
     <fieldset class='form-group'>
       <legend>Turno 1
         <span class="pull-right" (click)="deleteHora(1)" *ngIf='liceo.turno1.length>0'
@@ -100,7 +165,6 @@
       </div>
       <app-turno [registros]='liceo.turno3' *ngIf='liceo.turno3.length>0'></app-turno>
     </fieldset>
-      </div>
     </div>
   </div>
 
@@ -108,8 +172,6 @@
   <div class="card p-3">
     <div class='card-header'><h5>Grupos</h5></div>
     <div class="card-body">
-      <div class='horizontal'>
-
     <fieldset class='form-group' *ngIf='liceo.turno1.length>0'>
       <legend>Turno 1
         <span class="pull-right" (click)="deleteGrupo(1)" *ngIf='liceo.grupos1.length>0'
@@ -160,7 +222,6 @@
       </div>
       <app-grupos [registros]='liceo.grupos3' *ngIf='liceo.grupos3.length>0'></app-grupos>
     </fieldset>
-    </div>
     </div>
   </div>
 

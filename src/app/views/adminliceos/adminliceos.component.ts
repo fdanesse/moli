@@ -17,6 +17,7 @@ import { GruposComponent } from '../../componentes/grupos/grupos.component';
 })
 export class AdminliceosComponent implements OnInit {
 
+  public misliceos = ['Villa Rodriguez', 'Liceo Nº 3'];
   public liceo: Liceomodel = new Liceomodel();
 
   public turno1 = new FormControl('', []);
@@ -32,11 +33,32 @@ export class AdminliceosComponent implements OnInit {
     direccion: new FormControl('', [Validators.required]),
     localidad: new FormControl('', [Validators.required]),
     departamento: new FormControl('', [Validators.required]),
+    telefonos: new FormControl('', [Validators.required]),
     turno1: this.turno1, turno2: this.turno2, turno3: this.turno3,
     grupos1: this.grupos1, grupos2: this.grupos2, grupos3: this.grupos3
   });
 
+  public identidad: FormGroup = new FormGroup({
+    nombre: this.liceoForm.controls.nombre,
+    direccion: this.liceoForm.controls.direccion,
+    localidad: this.liceoForm.controls.localidad,
+    departamento: this.liceoForm.controls.departamento,
+    telefonos: this.liceoForm.controls.telefonos
+  });
+
   constructor() {
+  }
+
+  changedLiceo(event) {
+    console.log('Changed Liceo:', event.target.value);
+  }
+
+  deleteLiceo() {
+    console.log('DeleteLiceo:');
+  }
+
+  addLiceo() {
+    console.log('addLiceo:');
   }
 
   addHora(id: number) {

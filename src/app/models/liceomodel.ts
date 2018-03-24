@@ -3,8 +3,9 @@ export class Liceomodel {
   constructor(
     public nombre: (string) = '',
     public direccion: (string) = '',
-    public localidad: (string) = '',
     public departamento: (string) = '',
+    public localidad: (string) = '',
+    public telefonos: string[] = [],
 
     public turno1 = [
       ['07:20', '08:00'],
