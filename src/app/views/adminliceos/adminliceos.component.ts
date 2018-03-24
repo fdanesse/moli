@@ -7,6 +7,7 @@ import { Liceomodel } from '../../models/liceomodel';
 // https://www.youtube.com/watch?v=WjcL09xgo3o
 
 import { TurnoComponent } from '../../componentes/turno/turno.component';
+import { GruposComponent } from '../../componentes/grupos/grupos.component';
 
 
 @Component({
@@ -18,16 +19,21 @@ export class AdminliceosComponent implements OnInit {
 
   public liceo: Liceomodel = new Liceomodel();
 
-  public turno1 = new FormControl('', [Validators.required]);
-  public turno2 = new FormControl('', [Validators.required]);
-  public turno3 = new FormControl('', [Validators.required]);
+  public turno1 = new FormControl('', []);
+  public turno2 = new FormControl('', []);
+  public turno3 = new FormControl('', []);
+
+  public grupos1 = new FormControl('', []);
+  public grupos2 = new FormControl('', []);
+  public grupos3 = new FormControl('', []);
 
   public liceoForm: FormGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required]),
     direccion: new FormControl('', [Validators.required]),
     localidad: new FormControl('', [Validators.required]),
     departamento: new FormControl('', [Validators.required]),
-    turno1: this.turno1, turno2: this.turno2, turno3: this.turno3
+    turno1: this.turno1, turno2: this.turno2, turno3: this.turno3,
+    grupos1: this.grupos1, grupos2: this.grupos2, grupos3: this.grupos3
   });
 
   constructor() {
@@ -57,6 +63,34 @@ export class AdminliceosComponent implements OnInit {
         break;
       case 3:
         this.liceo.turno3.pop();
+        break;
+    }
+  }
+
+  addGrupo(id: number) {
+    switch (id) {
+      case 1:
+        this.liceo.grupos1.push(['1º', '1']);
+        break;
+      case 2:
+        this.liceo.grupos2.push(['1º', '1']);
+        break;
+      case 3:
+        this.liceo.grupos3.push(['1º', '1']);
+        break;
+    }
+  }
+
+  deleteGrupo(id: number) {
+    switch (id) {
+      case 1:
+        this.liceo.grupos1.pop();
+        break;
+      case 2:
+        this.liceo.grupos2.pop();
+        break;
+      case 3:
+        this.liceo.grupos3.pop();
         break;
     }
   }

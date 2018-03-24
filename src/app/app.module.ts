@@ -29,6 +29,8 @@ import { NotfoundComponent } from './views/notfound/notfound.component';
 import { AdminliceosComponent } from './views/adminliceos/adminliceos.component';
 import { TurnoComponent } from './componentes/turno/turno.component';
 import { RegistroComponent } from './componentes/turno/registro.component';
+import { GruposComponent } from './componentes/grupos/grupos.component';
+import { GrupoComponent } from './componentes/grupos/grupo.component';
 
 // https://hassantariqblog.wordpress.com/2016/10/12/angular2-template-parse-errors-add-custom_elements_schema-to-the-ngmodule-schemas/
 
@@ -46,6 +48,8 @@ import { RegistroComponent } from './componentes/turno/registro.component';
 
     TurnoComponent,
     RegistroComponent,
+    GruposComponent,
+    GrupoComponent,
 
   ],
   imports: [

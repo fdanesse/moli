@@ -10,7 +10,7 @@
 }
 
 /* Seleccionar liceo, crear, eliminar */
-.input-group {
+.input-group { /* contenedor de selector */
   margin: auto;
   padding: 5px;
 }
@@ -19,16 +19,13 @@ fieldset {
   margin: 5px;
   border: 0.05em gray solid;
   border-radius: 5px;
-  min-width: 200px;
+  min-width: 220px;
 }
 .controles {
   display: -webkit-flex !important;
   display: flex !important;
   -webkit-flex-direction: row !important;
   flex-direction: row !important;
-}
-button {
-  margin: 5px;
 }
 
 /* Formulario */
@@ -37,11 +34,16 @@ form {
   display: flex !important;
   -webkit-flex-direction: row !important;
   flex-direction: row !important;
+  /*
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  */
 }
 
 .card {
   margin: 5px;
-  /* background-color: rgba(255, 255, 255, 0.7);*/
   background-color: transparent;
   padding: 0 !important;
   border: none;
@@ -65,7 +67,7 @@ input {
 }
 
 /* Horarios */
-.horizontal {
+.horizontal { /* contiene los 3 fieldset de horarios */
   display: -webkit-flex !important;
   display: flex !important;
   -webkit-flex-direction: row !important;
@@ -77,21 +79,21 @@ legend {
 .pull-right {
   margin: 3px;
 }
+.fa {
+  cursor: pointer;
+  font-size: 1.5em;
+}
 .fa-plus-square {
   color: green;
 }
 .fa-minus-circle {
   color: red;
 }
+
 .form-group { /* fieldset de horarios */
   min-height: 400px;
 }
 
-/*
-.tablabuttons {
-  text-align: right;
-}
-*/
 .alert {
-  max-width: 200px;
+  max-width: 210px;
 }
