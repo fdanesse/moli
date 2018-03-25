@@ -59,6 +59,20 @@ export class AdminliceosComponent implements OnInit {
     console.log('addLiceo:');
   }
 
+  changedTelefono(id, event) {
+    console.log(id, event.target.value);
+    this.liceo.telefonos[id] = event.target.value;
+  }
+
+  addTelefono() {
+    this.liceo.telefonos.push('');
+  }
+
+  deleteTelefono(id) {
+    console.log(id);
+    this.liceo.telefonos.splice(id, 1);
+  }
+
   addHora(id: number) {
     switch (id) {
       case 1:

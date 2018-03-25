@@ -94,20 +94,22 @@
     <!--<fieldset class='form-group'>-->
       <fieldset class='form-group no-form-group'>
         <legend>Telefonos
-          <span class="pull-right"
-            data-toggle="tooltip" title="Eliminar">
-            <i class="fa fa-minus-circle" aria-hidden="true"></i>
-          </span>
-          <span class="pull-right"
+          <span class="pull-right" (click)="addTelefono()"
             data-toggle="tooltip" title="Agregar">
             <i class="fa fa-plus-square" aria-hidden="true"></i>
           </span>
         </legend>
-      <div class="iconinputcontainer">
+
+      <div class="iconinputcontainer" *ngFor='let tel of liceo.telefonos; index as id'>
         <span class="input-group-text"><i class="fa fa-phone-square"></i></span>
-        <input class='form-control' type='text' maxlength="30"
-          placeholder='Telefonos' formControlName='telefonos'>
+        <input class='form-control' type='text' maxlength="30" value={{tel}}
+          placeholder='Telefonos' (change)="changedTelefono(id, $event)"> <!--formControlName='telefonos'-->
+        <span class="pull-right" *ngIf='liceo.telefonos.length>0'
+          data-toggle="tooltip" title="Eliminar" (click)="deleteTelefono(id)">
+          <i class="fa fa-minus-circle" aria-hidden="true"></i>
+        </span>
       </div>
+
       <div class='alert alert-danger'
         *ngIf='liceoForm.controls.telefonos.errors'>
         <p *ngIf='liceoForm.controls.telefonos.errors.required'>Se requiere un teléfono</p>
