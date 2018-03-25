@@ -20,13 +20,17 @@
   </fieldset>
 </div>
 
+
+
+
 <!-- FORMULARIO -->
-<form class='row' novalidate [formGroup]="liceoForm" (ngSubmit)="save()">
+<form novalidate [formGroup]="liceoForm" (ngSubmit)="save()">
   <!-- IDENTIDAD -->
-  <div class="card p-3">
+  <div class='row'>
+  <div class="card p-3 ">
     <div class='card-header'><h5>Identidad</h5></div>
     <div class="card-body">
-      <fieldset class='form-group'>
+      <!--<fieldset class='form-group'>-->
 
         <fieldset class='form-group no-form-group'>
           <legend>Nombre</legend>
@@ -58,8 +62,14 @@
           <legend>Departamento</legend>
           <div class="iconinputcontainer">
             <span class="input-group-text"><i class="fa fa-home"></i></span>
-            <input class='form-control' type='text' maxlength="30"
-              placeholder='Departamento' [(ngModel)]='liceo.departamento' formControlName='departamento'>
+            <!--
+              <input class='form-control' type='text' maxlength="30"
+                placeholder='Departamento' [(ngModel)]='liceo.departamento'
+                formControlName='departamento'>
+            -->
+            <select class="custom-select" [(ngModel)]='liceo.departamento' formControlName='departamento'>
+              <option *ngFor='let dep of departamentos; index as id;' value={{dep}}>{{dep}}</option>
+            </select>
           </div>
           <div class='alert alert-danger'
             *ngIf='liceoForm.controls.departamento.errors'>
@@ -79,9 +89,9 @@
             <p *ngIf='liceoForm.controls.localidad.errors.required'>Se requiere la localidad</p>
           </div>
         </fieldset>
-    </fieldset>
+    <!--</fieldset>-->
 
-    <fieldset class='form-group'>
+    <!--<fieldset class='form-group'>-->
       <fieldset class='form-group no-form-group'>
         <legend>Telefonos
           <span class="pull-right"
@@ -107,12 +117,14 @@
 
       <p class='card-text'>Cuentas de correos y redes sociales</p>
       <p class='card-text'>Sitios webs, picasa y youtube</p>
-    </fieldset>
+    <!--</fieldset>-->
     </div>
+  </div>
   </div>
 
   <!-- HORARIOS -->
-  <div class="card p-3">
+  <div class='row'>
+  <div class="card p-3 ">
     <div class='card-header'><h5>Horarios</h5></div>
     <div class="card-body">
     <fieldset class='form-group'>
@@ -167,9 +179,11 @@
     </fieldset>
     </div>
   </div>
+  </div>
 
   <!-- GRUPOS -->
-  <div class="card p-3">
+  <div class='row'>
+  <div class="card p-3 ">
     <div class='card-header'><h5>Grupos</h5></div>
     <div class="card-body">
     <fieldset class='form-group' *ngIf='liceo.turno1.length>0'>
@@ -224,7 +238,7 @@
     </fieldset>
     </div>
   </div>
-
+</div>
 </form>
 
 <div class='row'>

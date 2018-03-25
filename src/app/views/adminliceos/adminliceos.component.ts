@@ -18,6 +18,12 @@ import { GruposComponent } from '../../componentes/grupos/grupos.component';
 export class AdminliceosComponent implements OnInit {
 
   public misliceos = ['Villa Rodriguez', 'Liceo Nº 3'];
+  public departamentos = ['Artigas', 'Salto', 'Paysandú',
+    'Rio Negro', 'Rivera', 'Tacuarembó', 'Soriano', 'Colonia',
+    'Flores', 'Dirazno', 'Florida', 'San José', 'Montevideo',
+    'Canelones', 'Lavalleja', 'Maldonado', 'Cerro Largo',
+    'Treinta y Tres', 'Rocha'];
+
   public liceo: Liceomodel = new Liceomodel();
 
   public turno1 = new FormControl('', []);
@@ -36,14 +42,6 @@ export class AdminliceosComponent implements OnInit {
     telefonos: new FormControl('', [Validators.required]),
     turno1: this.turno1, turno2: this.turno2, turno3: this.turno3,
     grupos1: this.grupos1, grupos2: this.grupos2, grupos3: this.grupos3
-  });
-
-  public identidad: FormGroup = new FormGroup({
-    nombre: this.liceoForm.controls.nombre,
-    direccion: this.liceoForm.controls.direccion,
-    localidad: this.liceoForm.controls.localidad,
-    departamento: this.liceoForm.controls.departamento,
-    telefonos: this.liceoForm.controls.telefonos
   });
 
   constructor() {

@@ -10,7 +10,7 @@
 }
 
 /* Seleccionar liceo, crear, eliminar */
-.input-group { /* contenedor de selector */
+.input-group {
   margin: auto;
   padding: 5px;
 }
@@ -30,10 +30,12 @@ fieldset {
 
 /* Formulario */
 form {
+  /*
   display: -webkit-flex !important;
   display: flex !important;
   -webkit-flex-direction: row !important;
   flex-direction: row !important;
+  */
   /*
   -webkit-justify-content: center;
   justify-content: center;
@@ -58,6 +60,8 @@ form {
   flex-direction: row !important;
   padding: 5px !important;
   background-color: rgba(46, 125, 50, 0.3);
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .card-body:hover {
   background-color: rgba(46, 125, 50, 0.2);
@@ -105,7 +109,7 @@ legend {
 }
 
 .iconinputcontainer > span {
-  margin: auto;
+  margin: 0;
   padding: 3px;
 }
 
@@ -116,4 +120,9 @@ legend {
 
 .no-form-group {
   min-height: 0;
+}
+
+.custom-select {
+  margin: 0;
+  flex-grow: 1;
 }
