@@ -31,6 +31,8 @@ import { TurnoComponent } from './componentes/turno/turno.component';
 import { RegistroComponent } from './componentes/turno/registro.component';
 import { GruposComponent } from './componentes/grupos/grupos.component';
 import { GrupoComponent } from './componentes/grupos/grupo.component';
+import { TelefonosComponent } from './componentes/telefonos/telefonos.component';
+import { TelefonoComponent } from './componentes/telefonos/telefono.component';
 
 // https://hassantariqblog.wordpress.com/2016/10/12/angular2-template-parse-errors-add-custom_elements_schema-to-the-ngmodule-schemas/
 
@@ -50,6 +52,8 @@ import { GrupoComponent } from './componentes/grupos/grupo.component';
     RegistroComponent,
     GruposComponent,
     GrupoComponent,
+    TelefonosComponent,
+    TelefonoComponent,
 
   ],
   imports: [

@@ -96,23 +96,6 @@ legend {
   max-width: 210px;
 }
 
-.iconinputcontainer {
-  margin: 0;
-  padding: 0;
-  display: -webkit-flex !important;
-  display: flex !important;
-  -webkit-flex-direction: row !important;
-  flex-direction: row !important;
-  background-color: white;
-  border: 0.1em gray;
-  border-radius: 5px;
-}
-
-.iconinputcontainer > span {
-  margin: 0;
-  padding: 3px;
-}
-
 .fa-phone-square, .fa-home, .fa-user {
   color: green;
   cursor: auto;
@@ -125,4 +108,17 @@ legend {
 .custom-select {
   margin: 0;
   flex-grow: 1;
+}
+
+.iconinputcontainer {
+  margin: 0; margin-bottom: 3px; padding: 0;
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-flex-direction: row !important;
+  flex-direction: row !important; background-color: white;
+  border: 0.1em red; border-radius: 5px;
+}
+
+.iconinputcontainer > span {
+  margin: 0; padding: 3px;
 }

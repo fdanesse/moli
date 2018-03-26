@@ -5,7 +5,7 @@ export class Liceomodel {
     public direccion: (string) = '',
     public departamento: (string) = '',
     public localidad: (string) = '',
-    public telefonos: string[] = [],
+    public telefonos: string[] = ['43423333', '43425555', '43426666'],
 
     public turno1 = [
       ['07:20', '08:00'],

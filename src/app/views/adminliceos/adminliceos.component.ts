@@ -8,6 +8,7 @@ import { Liceomodel } from '../../models/liceomodel';
 
 import { TurnoComponent } from '../../componentes/turno/turno.component';
 import { GruposComponent } from '../../componentes/grupos/grupos.component';
+import { TelefonosComponent } from '../../componentes/telefonos/telefonos.component';
 
 
 @Component({
@@ -59,19 +60,22 @@ export class AdminliceosComponent implements OnInit {
     console.log('addLiceo:');
   }
 
+  /*
   changedTelefono(id, event) {
     console.log(id, event.target.value);
     this.liceo.telefonos[id] = event.target.value;
   }
+  */
 
   addTelefono() {
     this.liceo.telefonos.push('');
   }
 
+  /*
   deleteTelefono(id) {
-    console.log(id);
     this.liceo.telefonos.splice(id, 1);
   }
+  */
 
   addHora(id: number) {
     switch (id) {

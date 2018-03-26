@@ -30,68 +30,59 @@
   <div class="card p-3 ">
     <div class='card-header'><h5>Identidad</h5></div>
     <div class="card-body">
-      <!--<fieldset class='form-group'>-->
+      <fieldset class='form-group no-form-group'>
+        <legend>Nombre</legend>
+        <div class="iconinputcontainer">
+          <span class="input-group-text"><i class="fa fa-user"></i></span>
+          <input class='form-control' type='text' maxlength="30"
+            placeholder='Nombre' [(ngModel)]='liceo.nombre' formControlName='nombre'>
+        </div>
+        <div class='alert alert-danger'
+          *ngIf='liceoForm.controls.nombre.errors'>
+          <p *ngIf='liceoForm.controls.nombre.errors.required'>Se requiere un nombre</p>
+        </div>
+      </fieldset>
 
-        <fieldset class='form-group no-form-group'>
-          <legend>Nombre</legend>
-          <div class="iconinputcontainer">
-            <span class="input-group-text"><i class="fa fa-user"></i></span>
-            <input class='form-control' type='text' maxlength="30"
-              placeholder='Nombre' [(ngModel)]='liceo.nombre' formControlName='nombre'>
-          </div>
-          <div class='alert alert-danger'
-            *ngIf='liceoForm.controls.nombre.errors'>
-            <p *ngIf='liceoForm.controls.nombre.errors.required'>Se requiere un nombre</p>
-          </div>
-        </fieldset>
+      <fieldset class='form-group no-form-group'>
+        <legend>Dirección</legend>
+        <div class="iconinputcontainer">
+          <span class="input-group-text"><i class="fa fa-home"></i></span>
+          <input class='form-control' type='text' maxlength="30"
+            placeholder='Dirección' [(ngModel)]='liceo.direccion' formControlName='direccion'>
+        </div>
+        <div class='alert alert-danger'
+          *ngIf='liceoForm.controls.direccion.errors'>
+          <p *ngIf='liceoForm.controls.direccion.errors.required'>Se requiere la dirección</p>
+        </div>
+      </fieldset>
 
-        <fieldset class='form-group no-form-group'>
-          <legend>Dirección</legend>
-          <div class="iconinputcontainer">
-            <span class="input-group-text"><i class="fa fa-home"></i></span>
-            <input class='form-control' type='text' maxlength="30"
-              placeholder='Dirección' [(ngModel)]='liceo.direccion' formControlName='direccion'>
-          </div>
-          <div class='alert alert-danger'
-            *ngIf='liceoForm.controls.direccion.errors'>
-            <p *ngIf='liceoForm.controls.direccion.errors.required'>Se requiere la dirección</p>
-          </div>
-        </fieldset>
+      <fieldset class='form-group no-form-group'>
+        <legend>Departamento</legend>
+        <div class="iconinputcontainer">
+          <span class="input-group-text"><i class="fa fa-home"></i></span>
+          <select class="custom-select" [(ngModel)]='liceo.departamento' formControlName='departamento'>
+            <option *ngFor='let dep of departamentos; index as id;' value={{dep}}>{{dep}}</option>
+          </select>
+        </div>
+        <div class='alert alert-danger'
+          *ngIf='liceoForm.controls.departamento.errors'>
+          <p *ngIf='liceoForm.controls.departamento.errors.required'>Se requiere el departamento</p>
+        </div>
+      </fieldset>
 
-        <fieldset class='form-group no-form-group'>
-          <legend>Departamento</legend>
-          <div class="iconinputcontainer">
-            <span class="input-group-text"><i class="fa fa-home"></i></span>
-            <!--
-              <input class='form-control' type='text' maxlength="30"
-                placeholder='Departamento' [(ngModel)]='liceo.departamento'
-                formControlName='departamento'>
-            -->
-            <select class="custom-select" [(ngModel)]='liceo.departamento' formControlName='departamento'>
-              <option *ngFor='let dep of departamentos; index as id;' value={{dep}}>{{dep}}</option>
-            </select>
-          </div>
-          <div class='alert alert-danger'
-            *ngIf='liceoForm.controls.departamento.errors'>
-            <p *ngIf='liceoForm.controls.departamento.errors.required'>Se requiere el departamento</p>
-          </div>
-        </fieldset>
+      <fieldset class='form-group no-form-group'>
+        <legend>Localidad</legend>
+        <div class="iconinputcontainer">
+          <span class="input-group-text"><i class="fa fa-home"></i></span>
+          <input class='form-control' type='text' maxlength="30"
+            placeholder='Localidad' [(ngModel)]='liceo.localidad' formControlName='localidad'>
+        </div>
+        <div class='alert alert-danger'
+          *ngIf='liceoForm.controls.localidad.errors'>
+          <p *ngIf='liceoForm.controls.localidad.errors.required'>Se requiere la localidad</p>
+        </div>
+      </fieldset>
 
-        <fieldset class='form-group no-form-group'>
-          <legend>Localidad</legend>
-          <div class="iconinputcontainer">
-            <span class="input-group-text"><i class="fa fa-home"></i></span>
-            <input class='form-control' type='text' maxlength="30"
-              placeholder='Localidad' [(ngModel)]='liceo.localidad' formControlName='localidad'>
-          </div>
-          <div class='alert alert-danger'
-            *ngIf='liceoForm.controls.localidad.errors'>
-            <p *ngIf='liceoForm.controls.localidad.errors.required'>Se requiere la localidad</p>
-          </div>
-        </fieldset>
-    <!--</fieldset>-->
-
-    <!--<fieldset class='form-group'>-->
       <fieldset class='form-group no-form-group'>
         <legend>Telefonos
           <span class="pull-right" (click)="addTelefono()"
@@ -99,27 +90,15 @@
             <i class="fa fa-plus-square" aria-hidden="true"></i>
           </span>
         </legend>
-
-      <div class="iconinputcontainer" *ngFor='let tel of liceo.telefonos; index as id'>
-        <span class="input-group-text"><i class="fa fa-phone-square"></i></span>
-        <input class='form-control' type='text' maxlength="30" value={{tel}}
-          placeholder='Telefonos' (change)="changedTelefono(id, $event)"> <!--formControlName='telefonos'-->
-        <span class="pull-right" *ngIf='liceo.telefonos.length>0'
-          data-toggle="tooltip" title="Eliminar" (click)="deleteTelefono(id)">
-          <i class="fa fa-minus-circle" aria-hidden="true"></i>
-        </span>
-      </div>
-
-      <div class='alert alert-danger'
-        *ngIf='liceoForm.controls.telefonos.errors'>
-        <p *ngIf='liceoForm.controls.telefonos.errors.required'>Se requiere un teléfono</p>
-      </div>
+        <app-telefonos [registros]='liceo.telefonos'></app-telefonos>
+        <div class='alert alert-danger' *ngIf='liceo.telefonos.length==0'>
+          Se requiere teléfono.
+        </div>
       </fieldset>
       <!--<i class="fa fa-at"></i>-->
 
       <p class='card-text'>Cuentas de correos y redes sociales</p>
       <p class='card-text'>Sitios webs, picasa y youtube</p>
-    <!--</fieldset>-->
     </div>
   </div>
   </div>

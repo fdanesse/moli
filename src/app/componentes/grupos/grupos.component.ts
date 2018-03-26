@@ -17,7 +17,7 @@ import { GrupoComponent } from './grupo.component';
     -->
     <tbody>
       <app-grupo *ngFor='let registro of registros; index as idx'
-        [registro]='registro' [index]='idx+1' (changed)="changedGroup($event)">
+        [registro]='registro' [index]='idx+1' (changed)='changedGroup($event)'>
       </app-grupo>
     </tbody>
   </table>
