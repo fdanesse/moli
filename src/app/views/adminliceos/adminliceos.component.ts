@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'; // Form
+import { Subscription } from 'rxjs/Subscription';
 
+import { MoliUser } from '../../models/moli-user';
 import { Liceomodel } from '../../models/liceomodel';
 
 // https://www.concretepage.com/angular-2/angular-2-formgroup-example
@@ -9,14 +11,22 @@ import { Liceomodel } from '../../models/liceomodel';
 import { TurnoComponent } from '../../componentes/turno/turno.component';
 import { GruposComponent } from '../../componentes/grupos/grupos.component';
 import { TelefonosComponent } from '../../componentes/telefonos/telefonos.component';
+import { EmailsComponent } from '../../componentes/emails/emails.component';
+
+import { UserloggedService } from '../../servicios/userlogged/userlogged.service';
+import { LiceosService } from '../../servicios/liceos/liceos.service';
 
 
 @Component({
   selector: 'app-adminliceos',
   templateUrl: './adminliceos.component.html',
-  styleUrls: ['./adminliceos.component.css']
+  styleUrls: ['./adminliceos.component.css'],
+  providers: [LiceosService]
 })
-export class AdminliceosComponent implements OnInit {
+export class AdminliceosComponent implements OnInit, OnDestroy {
+
+  private loginSubscription: Subscription;
+  public user: MoliUser = new MoliUser();
 
   public misliceos = ['Villa Rodriguez', 'Liceo Nº 3'];
   public departamentos = ['Artigas', 'Salto', 'Paysandú',
@@ -41,11 +51,25 @@ export class AdminliceosComponent implements OnInit {
     localidad: new FormControl('', [Validators.required]),
     departamento: new FormControl('', [Validators.required]),
     telefonos: new FormControl('', [Validators.required]),
+    emails: new FormControl('', [Validators.required]),
     turno1: this.turno1, turno2: this.turno2, turno3: this.turno3,
     grupos1: this.grupos1, grupos2: this.grupos2, grupos3: this.grupos3
   });
 
-  constructor() {
+  constructor(
+    public userLogged: UserloggedService,
+    public liceosService: LiceosService
+  ) {
+  }
+
+  listenLogin() {
+    this.loginSubscription = this.userLogged.obs.subscribe(user => {
+      this.user = Object.assign({}, user);
+      // La primera vez, user estará vacío, la segunda vez nos desubscribimos
+      if (this.loginSubscription) {
+        this.loginSubscription.unsubscribe();
+      }
+    });
   }
 
   changedLiceo(event) {
@@ -60,22 +84,16 @@ export class AdminliceosComponent implements OnInit {
     console.log('addLiceo:');
   }
 
-  /*
-  changedTelefono(id, event) {
-    console.log(id, event.target.value);
-    this.liceo.telefonos[id] = event.target.value;
-  }
-  */
+
+
 
   addTelefono() {
     this.liceo.telefonos.push('');
   }
 
-  /*
-  deleteTelefono(id) {
-    this.liceo.telefonos.splice(id, 1);
+  addEmail() {
+    this.liceo.emails.push('');
   }
-  */
 
   addHora(id: number) {
     switch (id) {
@@ -134,8 +152,28 @@ export class AdminliceosComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.listenLogin();
     this.liceoForm.setValue(this.liceo);
   }
 
-  save() {}
+  ngOnDestroy() {
+    if (this.loginSubscription) {
+      this.loginSubscription.unsubscribe();
+    }
+  }
+
+  save() {
+    // FIXME: Establecer Criterios de validacion del formulario
+    // FIXME: firebase no admite arrays anidados. (falla con horarios y grupos)
+    if (this.liceoForm.valid) {
+      // this.liceosService.saveLiceo(this.liceoForm.value);
+    } else {
+      alert ('El formulario no es válido');
+    }
+    this.liceosService.saveLiceo(this.liceoForm.value);
+  }
+
+  delete() {
+    // this.userData.deleteUser(this.user.uid);
+  }
 }

@@ -95,9 +95,21 @@
           Se requiere teléfono.
         </div>
       </fieldset>
-      <!--<i class="fa fa-at"></i>-->
 
-      <p class='card-text'>Cuentas de correos y redes sociales</p>
+      <fieldset class='form-group no-form-group'>
+        <legend>Emails
+          <span class="pull-right" (click)="addEmail()"
+            data-toggle="tooltip" title="Agregar">
+            <i class="fa fa-plus-square" aria-hidden="true"></i>
+          </span>
+        </legend>
+        <app-emails [registros]='liceo.emails'></app-emails>
+        <div class='alert alert-danger' *ngIf='liceo.emails.length==0'>
+          Se requiere email.
+        </div>
+      </fieldset>
+
+      <p class='card-text'>Cuentas redes sociales</p>
       <p class='card-text'>Sitios webs, picasa y youtube</p>
     </div>
   </div>
@@ -167,7 +179,7 @@
   <div class="card p-3 ">
     <div class='card-header'><h5>Grupos</h5></div>
     <div class="card-body">
-    <fieldset class='form-group' *ngIf='liceo.turno1.length>0'>
+    <fieldset class='form-group'>
       <legend>Turno 1
         <span class="pull-right" (click)="deleteGrupo(1)" *ngIf='liceo.grupos1.length>0'
           data-toggle="tooltip" title="Quitar Último Grupo">
@@ -184,7 +196,7 @@
       <app-grupos [registros]='liceo.grupos1' *ngIf='liceo.grupos1.length>0'></app-grupos>
     </fieldset>
 
-    <fieldset class='form-group' *ngIf='liceo.turno2.length>0'>
+    <fieldset class='form-group'>
       <legend>Turno 2
         <span class="pull-right" (click)="deleteGrupo(2)" *ngIf='liceo.grupos2.length>0'
           data-toggle="tooltip" title="Quitar Último Grupo">
@@ -201,7 +213,7 @@
       <app-grupos [registros]='liceo.grupos2' *ngIf='liceo.grupos2.length>0'></app-grupos>
     </fieldset>
 
-    <fieldset class='form-group' *ngIf='liceo.turno3.length>0'>
+    <fieldset class='form-group'>
       <legend>Turno 3
         <span class="pull-right" (click)="deleteGrupo(3)" *ngIf='liceo.grupos3.length>0'
           data-toggle="tooltip" title="Quitar Último Grupo">
@@ -220,6 +232,16 @@
     </div>
   </div>
 </div>
+
+<div class='col-md-12 botonera'>
+  <button type='submit'
+    class='btn btn-success'>Guardar</button> <!-- [disabled]='liceoForm.pristine || !liceoForm.valid' -->
+  <!--<button type='reset' class='btn btn-warning' (click)='liceoForm.reset()'
+    [disabled]='liceoForm.pristine'>Limpiar Formulario</button>-->
+  <button type='button' class='btn btn-danger'
+    (click)='delete()'>Eliminar</button>
+</div>
+
 </form>
 
 <div class='row'>
@@ -240,5 +262,15 @@
       <pre>{{ liceoForm.value | json }}</pre>
     </div>
   </div>
+
+  <div class="card p-3">
+    <div class='card-header'>
+      <h5>Usuario:</h5>
+    </div>
+    <div class="card-body">
+      <pre>{{ user | json }}</pre>
+    </div>
+  </div>
+
 </div>
 </div>

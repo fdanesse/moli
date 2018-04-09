@@ -33,6 +33,10 @@ import { GruposComponent } from './componentes/grupos/grupos.component';
 import { GrupoComponent } from './componentes/grupos/grupo.component';
 import { TelefonosComponent } from './componentes/telefonos/telefonos.component';
 import { TelefonoComponent } from './componentes/telefonos/telefono.component';
+import { EmailsComponent } from './componentes/emails/emails.component';
+import { EmailComponent } from './componentes/emails/email.component';
+
+import { LiceosService } from './servicios/liceos/liceos.service';
 
 // https://hassantariqblog.wordpress.com/2016/10/12/angular2-template-parse-errors-add-custom_elements_schema-to-the-ngmodule-schemas/
 
@@ -54,6 +58,8 @@ import { TelefonoComponent } from './componentes/telefonos/telefono.component';
     GrupoComponent,
     TelefonosComponent,
     TelefonoComponent,
+    EmailsComponent,
+    EmailComponent,
 
   ],
   imports: [
@@ -69,7 +75,7 @@ import { TelefonoComponent } from './componentes/telefonos/telefono.component';
     ReactiveFormsModule
   ],
   providers: [AuthService, UserloggedService, UserdataService, RolesService,
-    AuthGuard
+    AuthGuard, LiceosService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

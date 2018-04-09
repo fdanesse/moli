@@ -9,8 +9,7 @@ import { TelefonoComponent } from './telefono.component';
     [tel]='registro' [index]='idx' (changed)='changedTelefono($event)'
     (deleted)='deletedTelefono($event)'>
   </app-telefono>
-  `,
-  styles: ['']
+  `
 })
 export class TelefonosComponent implements OnInit {
 
