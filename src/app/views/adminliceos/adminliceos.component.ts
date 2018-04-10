@@ -98,13 +98,14 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
   addHora(id: number) {
     switch (id) {
       case 1:
-        this.liceo.turno1.push(['00:00', '00:45']);
+        const x = Object.keys(this.liceo.turno1);
+        this.liceo.turno1[x.length] = ['00:00', '00:45'];
         break;
       case 2:
-        this.liceo.turno2.push(['00:00', '00:45']);
+        // this.liceo.turno2.push(['00:00', '00:45']);
         break;
       case 3:
-        this.liceo.turno3.push(['00:00', '00:45']);
+        // this.liceo.turno3.push(['00:00', '00:45']);
         break;
     }
   }
@@ -112,13 +113,14 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
   deleteHora(id: number) {
     switch (id) {
       case 1:
-        this.liceo.turno1.pop();
+        const x = Object.keys(this.liceo.turno1);
+        delete this.liceo.turno1[x.length - 1];
         break;
       case 2:
-        this.liceo.turno2.pop();
+        // this.liceo.turno2.pop();
         break;
       case 3:
-        this.liceo.turno3.pop();
+        // this.liceo.turno3.pop();
         break;
     }
   }

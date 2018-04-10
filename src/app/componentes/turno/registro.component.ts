@@ -5,7 +5,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   selector: 'app-registro',
   template: `
   <tr>
-    <th scope="row">{{index}}</th>
+    <th scope="row">{{index+1}}</th>
     <td><input type="time" value='{{registro[0]}}' name="inicio" (change)='changedTime($event)'></td>
     <td><input type="time" value='{{registro[1]}}' name="fin" (change)='changedTime($event)'></td>
   </tr>

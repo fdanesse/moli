@@ -8,7 +8,9 @@ export class Liceomodel {
     public telefonos: string[] = [],
     public emails: string[] = [],
 
-    public turno1 = [
+    public turno1 = {
+      0: ['07:20', '08:00'],
+      1: ['08:00', '08:45']
       /*
       ['07:20', '08:00'],
       ['08:00', '08:45'],
@@ -18,8 +20,8 @@ export class Liceomodel {
       ['11:10', '11:55'],
       ['12:00', '12:45']
       */
-    ],
-    public turno2 = [
+    },
+    public turno2 = {
       /*
       ['12:50', '13:30'],
       ['13:30', '14:15'],
@@ -29,8 +31,8 @@ export class Liceomodel {
       ['16:45', '17:25'],
       ['17:30', '18:15']
       */
-    ],
-    public turno3 = [],
+    },
+    public turno3 = {},
 
     public grupos1 = [
       /*

@@ -122,7 +122,7 @@
     <div class="card-body">
     <fieldset class='form-group'>
       <legend>Turno 1
-        <span class="pull-right" (click)="deleteHora(1)" *ngIf='liceo.turno1.length>0'
+        <span class="pull-right" (click)="deleteHora(1)"
           data-toggle="tooltip" title="Quitar Última Hora">
           <i class="fa fa-minus-circle" aria-hidden="true"></i>
         </span>
@@ -131,12 +131,13 @@
           <i class="fa fa-plus-square" aria-hidden="true"></i>
         </span>
       </legend>
-      <div class='alert alert-warning' *ngIf='liceo.turno1.length==0'>
+      <div class='alert alert-warning'>
         Agrega horas de clase en este turno.
       </div>
-      <app-turno [registros]='liceo.turno1' *ngIf='liceo.turno1.length>0'></app-turno>
+      <app-turno [registros]='liceo.turno1'></app-turno>
     </fieldset>
 
+    <!--
     <fieldset class='form-group'>
       <legend>Turno 2
         <span class="pull-right" (click)="deleteHora(2)" *ngIf='liceo.turno2.length>0'
@@ -153,7 +154,8 @@
       </div>
       <app-turno [registros]='liceo.turno2' *ngIf='liceo.turno2.length>0'></app-turno>
     </fieldset>
-
+  -->
+  <!--
     <fieldset class='form-group'>
       <legend>Turno 3
         <span class="pull-right" (click)="deleteHora(3)" *ngIf='liceo.turno3.length>0'
@@ -170,6 +172,7 @@
       </div>
       <app-turno [registros]='liceo.turno3' *ngIf='liceo.turno3.length>0'></app-turno>
     </fieldset>
+    -->
     </div>
   </div>
   </div>
