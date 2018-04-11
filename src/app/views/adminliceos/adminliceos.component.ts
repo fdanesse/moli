@@ -25,6 +25,7 @@ import { LiceosService } from '../../servicios/liceos/liceos.service';
 })
 export class AdminliceosComponent implements OnInit, OnDestroy {
 
+  public Object = Object;
   private loginSubscription: Subscription;
   public user: MoliUser = new MoliUser();
 
@@ -102,14 +103,17 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
         this.liceo.turno1[x.length] = ['00:00', '00:45'];
         break;
       case 2:
-        // this.liceo.turno2.push(['00:00', '00:45']);
+        const y = Object.keys(this.liceo.turno2);
+        this.liceo.turno2[y.length] = ['00:00', '00:45'];
         break;
       case 3:
-        // this.liceo.turno3.push(['00:00', '00:45']);
+        const z = Object.keys(this.liceo.turno3);
+        this.liceo.turno3[z.length] = ['00:00', '00:45'];
         break;
     }
   }
 
+  /*
   deleteHora(id: number) {
     switch (id) {
       case 1:
@@ -117,13 +121,16 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
         delete this.liceo.turno1[x.length - 1];
         break;
       case 2:
-        // this.liceo.turno2.pop();
+        const y = Object.keys(this.liceo.turno2);
+        delete this.liceo.turno2[y.length - 1];
         break;
       case 3:
-        // this.liceo.turno3.pop();
+        const z = Object.keys(this.liceo.turno3);
+        delete this.liceo.turno3[z.length - 1];
         break;
     }
   }
+  */
 
   addGrupo(id: number) {
     switch (id) {

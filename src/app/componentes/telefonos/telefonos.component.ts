@@ -6,8 +6,8 @@ import { TelefonoComponent } from './telefono.component';
   selector: 'app-telefonos',
   template: `
   <app-telefono *ngFor='let registro of registros; index as idx'
-    [tel]='registro' [index]='idx' (changed)='changedTelefono($event)'
-    (deleted)='deletedTelefono($event)'>
+    [tel]='registro' [index]='idx' (changed)='changed($event)'
+    (deleted)='deleted($event)'>
   </app-telefono>
   `
 })
@@ -18,11 +18,11 @@ export class TelefonosComponent implements OnInit {
 
   constructor() { }
 
-  deletedTelefono(id) {
+  deleted(id) {
     this.regs.splice(id, 1);
   }
 
-  changedTelefono(params) {
+  changed(params) {
     this.regs[params[0]] = params[1];
   }
 

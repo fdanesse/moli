@@ -6,10 +6,20 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   template: `
   <tr>
     <th scope="row">{{index+1}}</th>
-    <td><input type="time" value='{{registro[0]}}' name="inicio" (change)='changedTime($event)'></td>
-    <td><input type="time" value='{{registro[1]}}' name="fin" (change)='changedTime($event)'></td>
+    <td><input type="time" value='{{registro[0]}}' name="inicio" (change)='change($event)'></td>
+    <td><input type="time" value='{{registro[1]}}' name="fin" (change)='change($event)'></td>
+    <td>
+      <span class="pull-right"
+        data-toggle="tooltip" title="Eliminar" (click)='delete()'>
+        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+      </span>
+  </td>
   </tr>
-  `
+  `,
+  styles: [
+    '.fa {cursor: pointer; font-size: 1.5em;}',
+    '.fa-minus-circle {color: red;}',
+    '.pull-right {margin: 3px;}']
 })
 export class RegistroComponent implements OnInit {
 
@@ -17,13 +27,14 @@ export class RegistroComponent implements OnInit {
   @Input() index: number;
 
   @Output() changed = new EventEmitter<any>();
+  @Output() deleted = new EventEmitter<any>();
 
   private inicio = '';
   private fin = '';
 
   constructor() { }
 
-  changedTime(event) {
+  change(event) {
     switch (event.target.name) {
       case 'inicio':
         this.inicio = event.target.value;
@@ -42,4 +53,7 @@ export class RegistroComponent implements OnInit {
     }
   }
 
+  delete() {
+    this.deleted.emit(this.index);
+  }
 }

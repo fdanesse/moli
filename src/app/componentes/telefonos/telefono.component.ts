@@ -6,9 +6,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   <div>
     <span class="input-group-text"><i class="fa fa-phone-square"></i></span>
     <input class='form-control' type='text' maxlength="9" value={{tel}}
-      placeholder='Telefono' (change)='changedTelefono($event)'>
+      placeholder='Telefono' (change)='change($event)'>
     <span class="pull-right"
-      data-toggle="tooltip" title="Eliminar" (click)='deleteTelefono()'>
+      data-toggle="tooltip" title="Eliminar" (click)='delete()'>
       <i class="fa fa-minus-circle" aria-hidden="true"></i>
     </span>
   </div>
@@ -40,7 +40,7 @@ export class TelefonoComponent implements OnInit {
 
   constructor() { }
 
-  changedTelefono (event) {
+  change (event) {
     this.valid = event.target.value.match(this.telefonos_pattern);
     if (this.valid) {
       this.tel = event.target.value;
@@ -50,7 +50,7 @@ export class TelefonoComponent implements OnInit {
     }
   }
 
-  deleteTelefono() {
+  delete() {
     this.deleted.emit(this.index);
   }
 

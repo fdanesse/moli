@@ -17,7 +17,8 @@ import { RegistroComponent } from '../turno/registro.component';
       -->
       <tbody>
         <app-registro *ngFor='let registro of Object.keys(registros); index as idx'
-          [registro]='registros[registro]' [index]='idx' (changed)="changedTime($event)">
+          [registro]='registros[registro]' [index]='idx'
+          (changed)="changed($event)" (deleted)="deleted($event)">
         </app-registro>
       </tbody>
     </table>
@@ -33,8 +34,12 @@ export class TurnoComponent implements OnInit {
 
   constructor() { }
 
-  changedTime(event) {
+  changed(event) {
     this.regs[event[0]] = [event[1], event[2]];
+  }
+
+  deleted(id) {
+    delete this.regs[id];
   }
 
   ngOnInit() {
