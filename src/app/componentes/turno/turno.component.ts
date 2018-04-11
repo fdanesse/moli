@@ -16,9 +16,9 @@ import { RegistroComponent } from '../turno/registro.component';
       </thead> FIXME: Por algún motivo, los campos no se alinean con la cabecera
       -->
       <tbody>
-        <app-registro *ngFor='let registro of Object.keys(registros); index as idx'
-          [registro]='registros[registro]' [index]='idx'
-          (changed)="changed($event)" (deleted)="deleted($event)">
+        <app-registro *ngFor='let key of Object.keys(registros)'
+          [registro]='registros[key]' [index]='key'
+          (changed)="change($event)" (deleted)="delete($event)">
         </app-registro>
       </tbody>
     </table>
@@ -34,11 +34,11 @@ export class TurnoComponent implements OnInit {
 
   constructor() { }
 
-  changed(event) {
+  change(event) {
     this.regs[event[0]] = [event[1], event[2]];
   }
 
-  deleted(id) {
+  delete(id) {
     delete this.regs[id];
   }
 

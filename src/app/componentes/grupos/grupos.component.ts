@@ -16,8 +16,9 @@ import { GrupoComponent } from './grupo.component';
     </thead> FIXME: Por algún motivo, los campos no se alinean con la cabecera
     -->
     <tbody>
-      <app-grupo *ngFor='let registro of registros; index as idx'
-        [registro]='registro' [index]='idx+1' (changed)='changedGroup($event)'>
+      <app-grupo *ngFor='let key of Object.keys(registros)'
+        [registro]='registros[key]' [index]='key'
+        (changed)='changed($event)' (deleted)="deleted($event)">
       </app-grupo>
     </tbody>
   </table>
@@ -27,13 +28,18 @@ import { GrupoComponent } from './grupo.component';
 })
 export class GruposComponent implements OnInit {
 
-  @Input() registros: any;
-  regs = [];
+  @Input() registros: Object;
+  regs = {};
+  Object = Object;
 
   constructor() { }
 
-  changedGroup(event) {
-    this.regs[event[0] - 1] = [event[1], event[2]];
+  changed(event) {
+    this.regs[event[0]] = [event[1], event[2]];
+  }
+
+  deleted(id) {
+    delete this.regs[id];
   }
 
   ngOnInit() {

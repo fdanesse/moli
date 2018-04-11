@@ -20,9 +20,19 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
           [selected]='o==orientacion'>{{o}}</option>
       </select>
     </td>
+    <td>
+      <span class="pull-right"
+        data-toggle="tooltip" title="Eliminar" (click)='delete()'>
+        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+      </span>
+    </td>
   </tr>
   `,
-  styles: ['input {max-length: 2;}']
+  styles: [
+    'input {max-length: 2;}',
+    '.fa {cursor: pointer; font-size: 1.5em;}',
+    '.fa-minus-circle {color: red;}',
+    '.pull-right {margin: 3px;}']
 })
 export class GrupoComponent implements OnInit {
 
@@ -30,6 +40,7 @@ export class GrupoComponent implements OnInit {
   @Input() index: number;
 
   @Output() changed = new EventEmitter<any>();
+  @Output() deleted = new EventEmitter<any>();
 
   public niveles = ['1º', '2º', '3º', '4º', '5º', '6º'];
   public orientaciones = [];
@@ -59,6 +70,10 @@ export class GrupoComponent implements OnInit {
   changedOrientacion(event) {
     this.orientacion = event.target.value;
     this.changed.emit([this.index, this.nivel, this.orientacion]);
+  }
+
+  delete() {
+    this.deleted.emit(this.index);
   }
 
   ngOnInit() {

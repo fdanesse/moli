@@ -5,15 +5,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   selector: 'app-registro',
   template: `
   <tr>
-    <th scope="row">{{index+1}}</th>
-    <td><input type="time" value='{{registro[0]}}' name="inicio" (change)='change($event)'></td>
-    <td><input type="time" value='{{registro[1]}}' name="fin" (change)='change($event)'></td>
+    <th scope="row">{{index}}</th>
+    <td><input type="time" value='{{registro[0]}}'
+      name="inicio" (change)='change($event)'></td>
+    <td><input type="time" value='{{registro[1]}}'
+      name="fin" (change)='change($event)'></td>
     <td>
       <span class="pull-right"
         data-toggle="tooltip" title="Eliminar" (click)='delete()'>
         <i class="fa fa-minus-circle" aria-hidden="true"></i>
       </span>
-  </td>
+    </td>
   </tr>
   `,
   styles: [

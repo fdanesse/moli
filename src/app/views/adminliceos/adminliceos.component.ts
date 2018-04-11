@@ -113,49 +113,19 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
     }
   }
 
-  /*
-  deleteHora(id: number) {
-    switch (id) {
-      case 1:
-        const x = Object.keys(this.liceo.turno1);
-        delete this.liceo.turno1[x.length - 1];
-        break;
-      case 2:
-        const y = Object.keys(this.liceo.turno2);
-        delete this.liceo.turno2[y.length - 1];
-        break;
-      case 3:
-        const z = Object.keys(this.liceo.turno3);
-        delete this.liceo.turno3[z.length - 1];
-        break;
-    }
-  }
-  */
-
   addGrupo(id: number) {
     switch (id) {
       case 1:
-        this.liceo.grupos1.push(['1º', '1']);
+        const x = Object.keys(this.liceo.grupos1);
+        this.liceo.grupos1[x.length] = ['1º', '1'];
         break;
       case 2:
-        this.liceo.grupos2.push(['1º', '1']);
+        const y = Object.keys(this.liceo.grupos2);
+        this.liceo.grupos2[y.length] = ['1º', '1'];
         break;
       case 3:
-        this.liceo.grupos3.push(['1º', '1']);
-        break;
-    }
-  }
-
-  deleteGrupo(id: number) {
-    switch (id) {
-      case 1:
-        this.liceo.grupos1.pop();
-        break;
-      case 2:
-        this.liceo.grupos2.pop();
-        break;
-      case 3:
-        this.liceo.grupos3.pop();
+        const z = Object.keys(this.liceo.grupos3);
+        this.liceo.grupos3[z.length] = ['1º', '1'];
         break;
     }
   }

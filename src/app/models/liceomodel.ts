@@ -34,7 +34,9 @@ export class Liceomodel {
     },
     public turno3 = {},
 
-    public grupos1 = [
+    public grupos1 = {
+      0: ['1º', '1'],
+      1: ['1º', '2']
       /*
       ['1º', '1'],
       ['1º', '2'],
@@ -42,8 +44,8 @@ export class Liceomodel {
       ['3º', '1'],
       ['5º', 'H']
       */
-      ],
-    public grupos2 = [
+    },
+    public grupos2 = {
       /*
       ['1º', '3'],
       ['2º', '2'],
@@ -51,8 +53,8 @@ export class Liceomodel {
       ['4º', '1'],
       ['6º', 'D']
       */
-    ],
-    public grupos3 = []
+    },
+    public grupos3 = {}
 
   ) {}
 
