@@ -18,7 +18,7 @@ import { GrupoComponent } from './grupo.component';
     <tbody>
       <app-grupo *ngFor='let key of Object.keys(registros)'
         [registro]='registros[key]' [index]='key'
-        (changed)='changed($event)' (deleted)="deleted($event)">
+        (deleted)="deleted($event)">
       </app-grupo>
     </tbody>
   </table>
@@ -33,10 +33,6 @@ export class GruposComponent implements OnInit {
   Object = Object;
 
   constructor() { }
-
-  changed(event) {
-    this.regs[event[0]] = [event[1], event[2]];
-  }
 
   deleted(id) {
     delete this.regs[id];

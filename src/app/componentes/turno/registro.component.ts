@@ -5,11 +5,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   selector: 'app-registro',
   template: `
   <tr>
-    <th scope="row">{{index}}</th>
-    <td><input type="time" value='{{registro[0]}}'
-      name="inicio" (change)='change($event)'></td>
-    <td><input type="time" value='{{registro[1]}}'
-      name="fin" (change)='change($event)'></td>
+    <th scope="row">{{id}}</th>
+    <td><input type="time" [(ngModel)]="reg[0]"></td>
+    <td><input type="time" [(ngModel)]="reg[1]"></td>
     <td>
       <span class="pull-right"
         data-toggle="tooltip" title="Eliminar" (click)='delete()'>
@@ -28,34 +26,23 @@ export class RegistroComponent implements OnInit {
   @Input() registro: any;
   @Input() index: number;
 
-  @Output() changed = new EventEmitter<any>();
   @Output() deleted = new EventEmitter<any>();
 
-  private inicio = '';
-  private fin = '';
+  public reg: Array<string>;
+  public id: number;
 
   constructor() { }
 
-  change(event) {
-    switch (event.target.name) {
-      case 'inicio':
-        this.inicio = event.target.value;
-        break;
-      case 'fin':
-        this.fin = event.target.value;
-        break;
-    }
-    this.changed.emit([this.index, this.inicio, this.fin]);
-  }
-
   ngOnInit() {
     if (this.registro) {
-      this.inicio = this.registro[0];
-      this.fin = this.registro[1];
+      this.reg = this.registro;
+    }
+    if (this.index) {
+      this.id = this.index;
     }
   }
 
   delete() {
-    this.deleted.emit(this.index);
+    this.deleted.emit(this.id);
   }
 }
