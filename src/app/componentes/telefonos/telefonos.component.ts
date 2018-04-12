@@ -13,8 +13,8 @@ import { TelefonoComponent } from './telefono.component';
 })
 export class TelefonosComponent implements OnInit {
 
-  @Input() registros: any;
-  regs = [];
+  @Input() registros: Array<string>;
+  regs: Array<string>;
 
   constructor() { }
 

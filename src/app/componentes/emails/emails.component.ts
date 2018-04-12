@@ -13,8 +13,8 @@ import { EmailComponent } from './email.component';
 })
 export class EmailsComponent implements OnInit {
 
-  @Input() registros: any;
-  regs = [];
+  @Input() registros: Array<string>;
+  regs: Array<string>;
 
   constructor() { }
 

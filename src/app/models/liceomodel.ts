@@ -1,11 +1,11 @@
 export class Liceomodel {
 
   constructor(
-    public nombre: (string) = '',
-    public direccion: (string) = '',
-    public departamento: (string) = '',
-    public localidad: (string) = '',
-    public telefonos: string[] = [],
+    public nombre: (string) = 'Mtra. Eidée Bellini Brillada',
+    public direccion: (string) = 'Diego Lamas s/n',
+    public departamento: (string) = 'San José',
+    public localidad: (string) = 'San José de Mayo',
+    public telefonos: string[] = ['43485555'],
     public emails: string[] = [],
 
     public turno1 = {

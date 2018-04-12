@@ -27,7 +27,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class EmailComponent implements OnInit {
 
-  @Input() email: any;
+  @Input() email: string;
   @Input() index: number;
 
   @Output() changed = new EventEmitter<any>();

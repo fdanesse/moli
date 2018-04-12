@@ -34,7 +34,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class GrupoComponent implements OnInit {
 
-  @Input() registro: any;
+  @Input() registro: Array<string>;
   @Input() index: number;
 
   @Output() deleted = new EventEmitter<any>();

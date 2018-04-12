@@ -29,7 +29,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TelefonoComponent implements OnInit {
 
-  @Input() tel: any;
+  @Input() tel: string;
   @Input() index: number;
 
   @Output() changed = new EventEmitter<any>();
