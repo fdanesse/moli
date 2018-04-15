@@ -23,7 +23,7 @@ import { PerfilComponent } from './views/perfil/perfil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RolesService } from './servicios/roles/roles.service';
 import { MulticheckboxcontrollerComponent } from './componentes/multicheckboxcontroller/multicheckboxcontroller.component';
-import { CheckboxComponent } from './componentes/multicheckboxcontroller/checkbox/checkbox.component';
+import { CheckboxComponent } from './componentes/multicheckboxcontroller/checkbox.component';
 import { NotfoundComponent } from './views/notfound/notfound.component';
 
 import { AdminliceosComponent } from './views/adminliceos/adminliceos.component';

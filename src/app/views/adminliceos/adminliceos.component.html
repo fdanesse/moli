@@ -5,10 +5,10 @@
   <div class='controles'>
     <div class="input-group">
       <select class="custom-select" (change)="changedLiceo($event)">
-        <option *ngFor='let lic of misliceos; index as id;' value={{id}}>{{lic}}</option>
+        <option *ngFor='let lic of misliceos; index as id;' value={{id}}>{{lic.nombre}}</option>
       </select>
     </div>
-    <span class="pull-right" (click)="addLiceo()"
+    <span class="pull-right" (click)="newLiceo()"
       data-toggle="tooltip" title="Crear nuevo Liceo">
       <i class="fa fa-plus-square" aria-hidden="true"></i>
     </span>
@@ -18,10 +18,7 @@
     </span>
   </div>
   </fieldset>
-</div>
-
-
-
+  </div>
 
 <!-- FORMULARIO -->
 <form novalidate [formGroup]="liceoForm" (ngSubmit)="save()">
@@ -30,6 +27,29 @@
   <div class="card p-3 ">
     <div class='card-header'><h5>Identidad</h5></div>
     <div class="card-body">
+
+      <fieldset class='form-group no-form-group'>
+        <legend>uid</legend>
+        <div class="iconinputcontainer">
+          <span class="input-group-text"><i class="fa fa-user"></i></span>
+          <input class='form-control' type='text'
+            placeholder='uid' [(ngModel)]='liceo.uid' formControlName='uid'>
+        </div>
+      </fieldset>
+
+      <fieldset class='form-group no-form-group'>
+        <legend>creador</legend>
+        <div class="iconinputcontainer">
+          <span class="input-group-text"><i class="fa fa-user"></i></span>
+          <input class='form-control' type='text'
+            placeholder='creador' [(ngModel)]='liceo.creador' formControlName='creador'>
+        </div>
+      </fieldset>
+
+
+
+
+
       <fieldset class='form-group no-form-group'>
         <legend>Nombre</legend>
         <div class="iconinputcontainer">
@@ -61,7 +81,7 @@
         <div class="iconinputcontainer">
           <span class="input-group-text"><i class="fa fa-home"></i></span>
           <select class="custom-select" [(ngModel)]='liceo.departamento' formControlName='departamento'>
-            <option *ngFor='let dep of departamentos; index as id;' value={{dep}}>{{dep}}</option>
+            <option *ngFor='let dep of departamentos' value={{dep}}>{{dep}}</option>
           </select>
         </div>
         <div class='alert alert-danger'
@@ -83,6 +103,7 @@
         </div>
       </fieldset>
 
+      <!--
       <fieldset class='form-group no-form-group'>
         <legend>Telefonos
           <span class="pull-right" (click)="addTelefono()"
@@ -108,119 +129,61 @@
           Se requiere email.
         </div>
       </fieldset>
+      -->
 
+      <!--
       <p class='card-text'>Cuentas redes sociales</p>
       <p class='card-text'>Sitios webs, picasa y youtube</p>
+      -->
     </div>
   </div>
   </div>
 
   <!-- HORARIOS -->
+  <!--
   <div class='row'>
   <div class="card p-3 ">
     <div class='card-header'><h5>Horarios</h5></div>
     <div class="card-body">
-    <fieldset class='form-group'>
-      <legend>Turno 1
-        <span class="pull-right" (click)="addHora(1)"
-          data-toggle="tooltip" title="Agregar Hora">
+    <fieldset class='form-group' *ngFor='let key of Object.keys(horarios)'>
+      <legend>Turno {{key}}
+        <span class="pull-right" (click)="addHora(key)"
+          data-toggle="tooltip" title="Agregar Grupo">
           <i class="fa fa-plus-square" aria-hidden="true"></i>
         </span>
       </legend>
-      <div class='alert alert-warning' *ngIf='Object.keys(liceo.turno1).length==0'>
-        Agrega horas de clase en este turno.
+      <div class='alert alert-warning' *ngIf='horarios[key].length==0'>
+        Agrega horarios de clase en este turno.
       </div>
-      <app-turno [registros]='liceo.turno1'></app-turno>
+      <app-turno [registros]='horarios[key]'></app-turno>
     </fieldset>
-
-    <fieldset class='form-group'>
-      <legend>Turno 2
-        <span class="pull-right" (click)="addHora(2)"
-          data-toggle="tooltip" title="Agregar Hora">
-          <i class="fa fa-plus-square" aria-hidden="true"></i>
-        </span>
-      </legend>
-      <div class='alert alert-warning' *ngIf='Object.keys(liceo.turno2).length==0'>
-        Agrega horas de clase en este turno.
-      </div>
-      <app-turno [registros]='liceo.turno2'></app-turno>
-    </fieldset>
-
-    <fieldset class='form-group'>
-      <legend>Turno 3
-        <span class="pull-right" (click)="addHora(3)"
-          data-toggle="tooltip" title="Agregar Hora">
-          <i class="fa fa-plus-square" aria-hidden="true"></i>
-        </span>
-      </legend>
-      <div class='alert alert-warning' *ngIf='Object.keys(liceo.turno3).length==0'>
-        Agrega horas de clase en este turno.
-      </div>
-      <app-turno [registros]='liceo.turno3'></app-turno>
-    </fieldset>
-
     </div>
   </div>
   </div>
+  -->
 
   <!-- GRUPOS -->
+  <!--
   <div class='row'>
   <div class="card p-3 ">
     <div class='card-header'><h5>Grupos</h5></div>
     <div class="card-body">
-    <fieldset class='form-group'>
-      <legend>Turno 1
-        <span class="pull-right" (click)="addGrupo(1)"
+    <fieldset class='form-group' *ngFor='let key of Object.keys(grupos)'>
+      <legend>Turno {{key}}
+        <span class="pull-right" (click)="addGrupo(key)"
           data-toggle="tooltip" title="Agregar Grupo">
           <i class="fa fa-plus-square" aria-hidden="true"></i>
         </span>
       </legend>
-      <div class='alert alert-warning' *ngIf='Object.keys(liceo.grupos1).length==0'>
+      <div class='alert alert-warning' *ngIf='grupos[key].length==0'>
         Agrega Grupos de alumnos en este turno.
       </div>
-      <app-grupos [registros]='liceo.grupos1'></app-grupos>
+      <app-grupos [registros]='grupos[key]'></app-grupos>
     </fieldset>
-
-    <!--
-    <fieldset class='form-group'>
-      <legend>Turno 2
-        <span class="pull-right" (click)="deleteGrupo(2)" *ngIf='liceo.grupos2.length>0'
-          data-toggle="tooltip" title="Quitar Último Grupo">
-          <i class="fa fa-minus-circle" aria-hidden="true"></i>
-        </span>
-        <span class="pull-right" (click)="addGrupo(2)"
-          data-toggle="tooltip" title="Agregar Grupo">
-          <i class="fa fa-plus-square" aria-hidden="true"></i>
-        </span>
-      </legend>
-      <div class='alert alert-warning' *ngIf='liceo.grupos2.length==0'>
-        Agrega Grupos de alumnos en este turno.
-      </div>
-      <app-grupos [registros]='liceo.grupos2' *ngIf='liceo.grupos2.length>0'></app-grupos>
-    </fieldset>
-
-    <fieldset class='form-group'>
-      <legend>Turno 3
-        <span class="pull-right" (click)="deleteGrupo(3)" *ngIf='liceo.grupos3.length>0'
-          data-toggle="tooltip" title="Quitar Último Grupo">
-          <i class="fa fa-minus-circle" aria-hidden="true"></i>
-        </span>
-        <span class="pull-right" (click)="addGrupo(3)"
-          data-toggle="tooltip" title="Agregar Grupo">
-          <i class="fa fa-plus-square" aria-hidden="true"></i>
-        </span>
-      </legend>
-      <div class='alert alert-warning' *ngIf='liceo.grupos3.length==0'>
-        Agrega Grupos de alumnos en este turno.
-      </div>
-      <app-grupos [registros]='liceo.grupos3' *ngIf='liceo.grupos3.length>0'></app-grupos>
-    </fieldset>
-    -->
-
     </div>
   </div>
-</div>
-
+  </div>
+  -->
 <div class='col-md-12 botonera'>
   <button type='submit'
     class='btn btn-success'>Guardar</button> <!-- [disabled]='liceoForm.pristine || !liceoForm.valid' -->
@@ -257,6 +220,15 @@
     </div>
     <div class="card-body">
       <pre>{{ user | json }}</pre>
+    </div>
+  </div>
+
+  <div class="card p-3">
+    <div class='card-header'>
+      <h5>misliceos:</h5>
+    </div>
+    <div class="card-body">
+      <pre>{{ misliceos }}</pre>
     </div>
   </div>
 

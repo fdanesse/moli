@@ -3,7 +3,7 @@ import { MoliUser } from '../../models/moli-user';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { CheckboxComponent } from '../../componentes/multicheckboxcontroller/checkbox/checkbox.component';
+import { CheckboxComponent } from '../../componentes/multicheckboxcontroller/checkbox.component';
 import { MulticheckboxcontrollerComponent } from '../../componentes/multicheckboxcontroller/multicheckboxcontroller.component';
 import { RolesService } from '../../servicios/roles/roles.service';
 
@@ -26,7 +26,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
   private rolesSubscription: Subscription;
   private loginSubscription: Subscription;
 
-  public rolesModel: string[] = [];
+  public rolesModel: Array<string> = [];
   public user: MoliUser = new MoliUser(); // Datos que se van a almacenar.
 
   /* Comienza con una palabra de entre 3 y 15 caracteres, pueden seguir con varias palabras
@@ -77,11 +77,12 @@ export class PerfilComponent implements OnInit, OnDestroy {
       /* auth user data */
       photoURL: new FormControl('', [Validators.required]),
       uid: new FormControl('', [Validators.required]),
+      _id: new FormControl('', [Validators.nullValidator]),
       displayName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       emailVerified: new FormControl('', [Validators.pattern('true')]),
       phoneNumber: new FormControl('', [
-        Validators.pattern(this.telefonos_pattern) || null]),
+        Validators.pattern(this.telefonos_pattern) || Validators.nullValidator]),
       providerId: new FormControl('', [Validators.required]),
 
       /* personal user data */
@@ -97,10 +98,10 @@ export class PerfilComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.pattern(this.ci_pattern)]),
       credencial: new FormControl('', [
-        Validators.pattern(this.credencial_pattern) || null]),
+        Validators.pattern(this.credencial_pattern) || Validators.nullValidator]),
       direccion: new FormControl('', [Validators.maxLength(30)]),
       telefono: new FormControl('', [
-        Validators.pattern(this.telefonos_pattern) || null]),
+        Validators.pattern(this.telefonos_pattern) || Validators.nullValidator]),
 
       /* laboral data */
       ncobro: new FormControl('', [
@@ -130,8 +131,15 @@ export class PerfilComponent implements OnInit, OnDestroy {
     this.loginSubscription = this.userLogged.obs.subscribe(user => {
       this.user = Object.assign({}, user);
       // La primera vez, user estará vacío, la segunda vez nos desubscribimos
+      /*
       if (this.loginSubscription) {
         this.loginSubscription.unsubscribe();
+      }
+      */
+      if (!this.user._id) {
+        const d = new Date();
+        const t = d.getTime().toString();
+        this.user['_id'] = t;
       }
     });
   }

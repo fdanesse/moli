@@ -35,6 +35,8 @@
         </div>
       </fieldset>
       -->
+        <input class='form-control' type='text' hidden
+          [(ngModel)]='user._id' readonly formControlName='_id'>
 
       <fieldset class='form-group'>
         <legend class="text-left"><strong> Nickname: </strong></legend>
@@ -207,11 +209,9 @@
   <pre>Formulario Válido: {{ perfilForm.status | json }}</pre>
   -->
 
-  <!--
   <div class='row'>
     <div class='col-md-6'>
       <h6>Valores a Guardar:</h6>
       <pre>{{ user | json }}</pre>
     </div>
   </div>
-  -->

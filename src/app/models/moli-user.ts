@@ -3,6 +3,7 @@ export class MoliUser {
   constructor(
     // auth user data
     public uid: (string) = '',
+    public _id: (string) = '', // time id para relaciones foraneas en otras tablas
     public displayName: (string) = '',
     public photoURL: (string) = '',
     public email: (string) = '',

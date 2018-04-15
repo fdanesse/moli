@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Host } from '@angular/core';
-import { MulticheckboxcontrollerComponent } from '../multicheckboxcontroller.component';
+import { MulticheckboxcontrollerComponent } from './multicheckboxcontroller.component';
 
 /*
 @Host decorator nos permite obtener una referencia al componente padre.

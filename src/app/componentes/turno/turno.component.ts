@@ -29,8 +29,8 @@ import { RegistroComponent } from '../turno/registro.component';
 export class TurnoComponent implements OnInit {
 
   @Input() registros: Object;
-  regs = {};
-  Object = Object;
+  public regs = {};
+  public Object = Object;
 
   constructor() { }
 
