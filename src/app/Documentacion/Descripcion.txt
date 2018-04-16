@@ -1,0 +1,10 @@
+1- Un usuario se loguea.
+2- Un usuario logueado crea y guarda su perfil.
+
+3- Un usuario logueado y con un perfil activo en la aplicación crea y guarda un liceo.
+
+Pruebas realizadas:
+  1- Los perfiles de usuario solo pueden leerse y escribirse por el propietario.
+  2- El punto 3 se cumple cabalmente.
+  2- Si cambiamos los datos del usuario en la base de datos, la información se actualiza automáticamente en el perfil y en crear liceo.
+  3- Si cambiamos los datos de un liceo en la base de datos, la información se actualiza automáticamente en crear liceo.

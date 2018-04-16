@@ -37,7 +37,7 @@ queryCreador(_id: string) {
 saveLiceo(uid, liceo) {
   this.liceos_collection.doc(uid).set( Object.assign({}, liceo) )
     .then(success => console.log('SAVE', success))
-    .catch(err => console.log('error en saveLiceo', err));
+    .catch(err => console.log('error en saveLiceo'));
 /*
   this.liceos_collection.doc(liceo.uid).set( (Object.assign({}, liceo)) )
     .then(success => console.log('SAVE', success))

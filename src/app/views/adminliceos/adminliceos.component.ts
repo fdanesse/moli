@@ -102,6 +102,8 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
       const d = new Date();
       const t = d.getTime().toString();
       this.liceo['uid'] = t;
+    }else {
+      alert('Debes tener un usuario en la aplicación y estar logueado con el para poder realizar esta acción.');
     }
   }
 
@@ -164,12 +166,12 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
         if (this.misliceosSubscription) {
           this.misliceosSubscription.unsubscribe();
         }
-        this.listeLiceos(this.user._id);
+        this.listenLiceos(this.user._id);
       }
     });
   }
 
-  listeLiceos(_id: string) {
+  listenLiceos(_id: string) {
     // Carga de liceos creados por este usuario
     this.misliceosSubscription = this.liceosService.queryCreador(_id)
       .subscribe(data => {
@@ -213,9 +215,10 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
     // FIXME: Establecer Criterios de validacion del formulario
     if (!this.liceoForm.valid) {
       alert ('El formulario no es válido');
+    }else {
+      // this.liceo['creador'] = this.user.uid;
+      this.liceosService.saveLiceo(this.liceo['uid'], this.liceo);
     }
-    // this.liceo['creador'] = this.user.uid;
-    this.liceosService.saveLiceo(this.liceo['uid'], this.liceo);
   }
 
   delete() {
