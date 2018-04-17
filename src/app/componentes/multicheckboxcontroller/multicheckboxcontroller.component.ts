@@ -37,10 +37,6 @@ export class MulticheckboxcontrollerComponent implements OnInit, ControlValueAcc
   ngOnInit() {
   }
 
-  get model() {
-    return this._model;
-  }
-
   writeValue(value: any): void {
     this._model = value;
   }
@@ -51,6 +47,13 @@ export class MulticheckboxcontrollerComponent implements OnInit, ControlValueAcc
 
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
+  }
+
+
+
+
+  get model() {
+    return this._model;
   }
 
   set(value: any) {

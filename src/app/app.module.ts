@@ -37,6 +37,8 @@ import { EmailsComponent } from './componentes/emails/emails.component';
 import { EmailComponent } from './componentes/emails/email.component';
 
 import { LiceosService } from './servicios/liceos/liceos.service';
+import { GrsComponent } from './componentes/grs/grs.component';
+import { GrssComponent } from './componentes/grs/grss.component';
 
 // https://hassantariqblog.wordpress.com/2016/10/12/angular2-template-parse-errors-add-custom_elements_schema-to-the-ngmodule-schemas/
 
@@ -60,6 +62,8 @@ import { LiceosService } from './servicios/liceos/liceos.service';
     TelefonoComponent,
     EmailsComponent,
     EmailComponent,
+    GrsComponent,
+    GrssComponent,
 
   ],
   imports: [

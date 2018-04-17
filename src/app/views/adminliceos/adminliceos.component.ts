@@ -8,13 +8,16 @@ import { Liceomodel } from '../../models/liceomodel';
 // https://www.concretepage.com/angular-2/angular-2-formgroup-example
 // https://www.youtube.com/watch?v=WjcL09xgo3o
 
-import { TurnoComponent } from '../../componentes/turno/turno.component';
-import { GruposComponent } from '../../componentes/grupos/grupos.component';
-import { TelefonosComponent } from '../../componentes/telefonos/telefonos.component';
-import { EmailsComponent } from '../../componentes/emails/emails.component';
+// import { TurnoComponent } from '../../componentes/turno/turno.component';
+// import { GruposComponent } from '../../componentes/grupos/grupos.component';
+// import { TelefonosComponent } from '../../componentes/telefonos/telefonos.component';
+// import { EmailsComponent } from '../../componentes/emails/emails.component';
 
 import { UserloggedService } from '../../servicios/userlogged/userlogged.service';
 import { LiceosService } from '../../servicios/liceos/liceos.service';
+
+import { GrssComponent } from '../../componentes/grs/grss.component';
+import { GrsComponent } from '../../componentes/grs/grs.component';
 
 
 @Component({
@@ -66,6 +69,7 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
     // administrativos: new FormControl('', [Validators.nullValidator]),
     // adscriptos: new FormControl('', [Validators.nullValidator]),
     // docentes: new FormControl('', [Validators.nullValidator])
+    horarios: new FormControl('', [Validators.required])
   });
 
   /*

@@ -48,6 +48,25 @@
 
 
 
+      <fieldset class='form-group'>
+        <legend class="text-left"><strong> *****: </strong></legend>
+        <app-grss formControlName='horarios' [(ngModel)]="liceo.horarios">
+          <app-grs *ngFor='let key of Object.keys(liceo.horarios)' [index]='key' [value]='liceo.horarios[key]'></app-grs>
+        </app-grss>
+        <!--
+        <app-grs formControlName='horarios' [(ngModel)]="liceo.horarios">
+          <app-gr *ngFor='let h of liceo.horarios; index as id;' [index]='id' [value]='h'></app-gr>
+        </app-grs>
+        -->
+        <!--
+        <div class='alert alert-danger'
+          *ngIf='perfilForm.controls.roles.errors'>
+          <p *ngIf='perfilForm.controls.roles.errors.required'>¿Qúe roles ocupas?</p>
+        </div>
+        -->
+      </fieldset>
+
+
 
 
       <fieldset class='form-group no-form-group'>

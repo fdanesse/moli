@@ -15,6 +15,8 @@ export class Liceomodel {
     // public adscriptos: Array<string> = [],
     // public docentes: Array<string> = [],
 
+    public horarios: Object = {}, // {0: ['07:20', '08:00']},
+
     /*
     public turno1 = {
       0: ['07:20', '08:00'],
