@@ -1,7 +1,7 @@
 export class Liceomodel {
 
   constructor(
-    public nombre: string = 'Mtra. Eidée Bellini Brillada',
+    public nombre: string = '', // Mtra. Eidée Bellini Brillada
     public direccion: string = 'Diego Lamas s/n',
     public departamento: string = 'San José',
     public localidad: string = 'San José de Mayo',
@@ -41,10 +41,9 @@ export class Liceomodel {
       4: ['20:55', '21:25'],
       5: ['21:30', '22:00'],
       6: ['22:00', '22:30']
-    }
+    },
 
-    /*
-    public grupos1 = {
+    public grupos1: Object = {
       0: ['1º', '1'],
       1: ['1º', '2'],
       2: ['1º', '1'],
@@ -53,15 +52,14 @@ export class Liceomodel {
       5: ['3º', '1'],
       6: ['5º', 'H']
     },
-    public grupos2 = {
+    public grupos2: Object = {
       0: ['1º', '3'],
       1: ['2º', '2'],
       2: ['3º', '2'],
       3: ['4º', '1'],
       4: ['6º', 'D']
     },
-    public grupos3 = {}
-    */
+    public grupos3: Object = {}
 
   ) {}
 

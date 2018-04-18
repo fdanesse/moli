@@ -5,7 +5,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-grss',
+  selector: 'app-horariosturno',
   template: `
   <table class="table table-sm table-striped table-dark table-bordered table-hover">
     <!--
@@ -24,7 +24,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => GrssComponent),
+      useExisting: forwardRef(() => HorariosturnoComponent),
       multi: true
     }
   ],
@@ -35,7 +35,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     'tbody {flex-direction: column !important;}',
     'table {margin: 0px;padding: 0;}']
 })
-export class GrssComponent implements OnInit, ControlValueAccessor {
+export class HorariosturnoComponent implements OnInit {
 
   private _model: Object;
 

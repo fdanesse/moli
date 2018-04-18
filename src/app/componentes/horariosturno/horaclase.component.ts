@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
-  selector: 'app-grs',
+  selector: 'app-horaclase',
   template: `
   <tr>
     <th scope='row'>{{index}}</th>
@@ -22,7 +22,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
     '.fa-minus-circle {color: red;}',
     '.pull-right {margin: 3px;}']
 })
-export class GrsComponent implements OnInit {
+export class HoraclaseComponent implements OnInit {
 
   @Input() value: Array<string>;
   @Input() index: number;
@@ -41,3 +41,4 @@ export class GrsComponent implements OnInit {
     this.quitar.next(this.index);
   }
 }
+

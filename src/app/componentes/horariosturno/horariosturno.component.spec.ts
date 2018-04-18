@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GrsComponent } from './grs.component';
+import { HorariosturnoComponent } from './horariosturno.component';
 
-describe('GrsComponent', () => {
-  let component: GrsComponent;
-  let fixture: ComponentFixture<GrsComponent>;
+describe('HorariosturnoComponent', () => {
+  let component: HorariosturnoComponent;
+  let fixture: ComponentFixture<HorariosturnoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GrsComponent ]
+      declarations: [ HorariosturnoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GrsComponent);
+    fixture = TestBed.createComponent(HorariosturnoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

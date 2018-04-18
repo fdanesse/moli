@@ -16,8 +16,10 @@ import { Liceomodel } from '../../models/liceomodel';
 import { UserloggedService } from '../../servicios/userlogged/userlogged.service';
 import { LiceosService } from '../../servicios/liceos/liceos.service';
 
-import { GrssComponent } from '../../componentes/grs/grss.component';
-import { GrsComponent } from '../../componentes/grs/grs.component';
+import { HorariosturnoComponent } from '../../componentes/horariosturno/horariosturno.component';
+import { HoraclaseComponent } from '../../componentes/horariosturno/horaclase.component';
+import { GruposturnoComponent } from '../../componentes/gruposturno/gruposturno.component';
+import { GrupoComponent } from '../../componentes/gruposturno/grupo.component';
 
 
 @Component({
@@ -43,11 +45,6 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
     'Treinta y Tres', 'Rocha'];
 
   public liceo: Liceomodel = new Liceomodel();
-  /*
-  public grupos1 = new FormControl('', [Validators.nullValidator]);
-  public grupos2 = new FormControl('', [Validators.nullValidator]);
-  public grupos3 = new FormControl('', [Validators.nullValidator]);
-  */
 
   public liceoForm: FormGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required]),
@@ -65,7 +62,10 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
     // docentes: new FormControl('', [Validators.nullValidator])
     horarios1: new FormControl('', [Validators.required]),
     horarios2: new FormControl('', [Validators.required]),
-    horarios3: new FormControl('', [Validators.required])
+    horarios3: new FormControl('', [Validators.required]),
+    grupos1: new FormControl('', [Validators.required]),
+    grupos2: new FormControl('', [Validators.required]),
+    grupos3: new FormControl('', [Validators.required])
   });
 
   constructor(
@@ -149,26 +149,39 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
   addEmail() {
     this.liceo.emails.push('');
   }
+  */
 
 
-
-  addGrupo(id: string) {
+  addGrupo(id: number) {
     switch (id) {
-      case '1':
+      case 1:
         const x = Object.keys(this.liceo.grupos1);
         this.liceo.grupos1[x.length] = ['1º', '1'];
         break;
-      case '2':
+      case 2:
         const y = Object.keys(this.liceo.grupos2);
         this.liceo.grupos2[y.length] = ['1º', '1'];
         break;
-      case '3':
+      case 3:
         const z = Object.keys(this.liceo.grupos3);
         this.liceo.grupos3[z.length] = ['1º', '1'];
         break;
     }
   }
-  */
+
+  eliminarGrupo(id: number, index: string) {
+    switch (id) {
+      case 1:
+        delete this.liceo.grupos1[index];
+        break;
+      case 2:
+        delete this.liceo.grupos2[index];
+        break;
+      case 3:
+        delete this.liceo.grupos3[index];
+        break;
+    }
+  }
 
   listenLogin() {
     /*

@@ -34,7 +34,7 @@
         <div class="iconinputcontainer">
           <span class="input-group-text"><i class="fa fa-user"></i></span>
           <input class='form-control' type='text'
-            placeholder='uid' [(ngModel)]='liceo.uid' formControlName='uid'>
+            placeholder='uid' [(ngModel)]='liceo.uid' formControlName='uid' readonly>
         </div>
       </fieldset>
 
@@ -43,7 +43,7 @@
         <div class="iconinputcontainer">
           <span class="input-group-text"><i class="fa fa-user"></i></span>
           <input class='form-control' type='text'
-            placeholder='creador' [(ngModel)]='liceo.creador' formControlName='creador'>
+            placeholder='creador' [(ngModel)]='liceo.creador' formControlName='creador' readonly>
         </div>
       </fieldset>
 
@@ -141,17 +141,19 @@
   <div class="card p-3 ">
     <div class='card-header'><h5>Horarios</h5></div>
     <div class="card-body">
+
     <fieldset class='form-group'>
       <legend class="text-left"><strong> Turno 1 </strong>
         <span class="pull-right" (click)="addHora(1)"
-          data-toggle="tooltip" title="Agregar Grupo">
+          data-toggle="tooltip" title="Agregar Hora de Clase">
           <i class="fa fa-plus-square" aria-hidden="true"></i>
         </span>
       </legend>
-      <app-grss formControlName='horarios1' [(ngModel)]="liceo.horarios1">
-        <app-grs *ngFor='let key of Object.keys(liceo.horarios1)'
-          [value]='liceo.horarios1[key]' [index]='key' (quitar)='eliminarHora(1, $event)'></app-grs>
-      </app-grss>
+      <app-horariosturno formControlName='horarios1' [(ngModel)]="liceo.horarios1">
+        <app-horaclase *ngFor='let key of Object.keys(liceo.horarios1)'
+          [value]='liceo.horarios1[key]' [index]='key' (quitar)='eliminarHora(1, $event)'>
+        </app-horaclase>
+      </app-horariosturno>
       <div class='alert alert-danger'
         *ngIf='liceoForm.controls.horarios1.errors'>
         <p *ngIf='liceoForm.controls.horarios1.errors.required'>Se requieren los horarios de este turno.</p>
@@ -161,14 +163,15 @@
     <fieldset class='form-group'>
       <legend class="text-left"><strong> Turno 2 </strong>
         <span class="pull-right" (click)="addHora(2)"
-          data-toggle="tooltip" title="Agregar Grupo">
+          data-toggle="tooltip" title="Agregar Hora de Clase">
           <i class="fa fa-plus-square" aria-hidden="true"></i>
         </span>
       </legend>
-      <app-grss formControlName='horarios2' [(ngModel)]="liceo.horarios2">
-        <app-grs *ngFor='let key of Object.keys(liceo.horarios2)'
-          [value]='liceo.horarios2[key]' [index]='key' (quitar)='eliminarHora(2, $event)'></app-grs>
-      </app-grss>
+      <app-horariosturno formControlName='horarios2' [(ngModel)]="liceo.horarios2">
+        <app-horaclase *ngFor='let key of Object.keys(liceo.horarios2)'
+          [value]='liceo.horarios2[key]' [index]='key' (quitar)='eliminarHora(2, $event)'>
+        </app-horaclase>
+      </app-horariosturno>
       <div class='alert alert-danger'
         *ngIf='liceoForm.controls.horarios2.errors'>
         <p *ngIf='liceoForm.controls.horarios2.errors.required'>Se requieren los horarios de este turno.</p>
@@ -178,14 +181,15 @@
     <fieldset class='form-group'>
       <legend class="text-left"><strong> Turno 3 </strong>
         <span class="pull-right" (click)="addHora(3)"
-          data-toggle="tooltip" title="Agregar Grupo">
+          data-toggle="tooltip" title="Agregar Hora de Clase">
           <i class="fa fa-plus-square" aria-hidden="true"></i>
         </span>
       </legend>
-      <app-grss formControlName='horarios3' [(ngModel)]="liceo.horarios3">
-        <app-grs *ngFor='let key of Object.keys(liceo.horarios3)'
-          [value]='liceo.horarios3[key]' [index]='key' (quitar)='eliminarHora(3, $event)'></app-grs>
-      </app-grss>
+      <app-horariosturno formControlName='horarios3' [(ngModel)]="liceo.horarios3">
+        <app-horaclase *ngFor='let key of Object.keys(liceo.horarios3)'
+          [value]='liceo.horarios3[key]' [index]='key' (quitar)='eliminarHora(3, $event)'>
+        </app-horaclase>
+      </app-horariosturno>
       <div class='alert alert-danger'
         *ngIf='liceoForm.controls.horarios3.errors'>
         <p *ngIf='liceoForm.controls.horarios3.errors.required'>Se requieren los horarios de este turno.</p>
@@ -197,6 +201,66 @@
   </div>
 
   <!-- GRUPOS -->
+  <div class="card p-3 ">
+    <div class='card-header'><h5>Grupos</h5></div>
+    <div class="card-body">
+
+    <fieldset class='form-group'>
+      <legend class="text-left"><strong> Turno 1 </strong>
+        <span class="pull-right" (click)="addGrupo(1)"
+          data-toggle="tooltip" title="Agregar Grupo">
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+        </span>
+      </legend>
+      <app-gruposturno formControlName='grupos1' [(ngModel)]="liceo.grupos1">
+        <app-grupo *ngFor='let key of Object.keys(liceo.grupos1)'
+          [value]='liceo.grupos1[key]' [index]='key' (quitar)='eliminarGrupo(1, $event)'>
+        </app-grupo>
+      </app-gruposturno>
+      <div class='alert alert-danger'
+        *ngIf='liceoForm.controls.grupos1.errors'>
+        <p *ngIf='liceoForm.controls.grupos1.errors.required'>Se requieren los grupos de este turno.</p>
+      </div>
+    </fieldset>
+
+    <fieldset class='form-group'>
+      <legend class="text-left"><strong> Turno 2 </strong>
+        <span class="pull-right" (click)="addGrupo(2)"
+          data-toggle="tooltip" title="Agregar Grupo">
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+        </span>
+      </legend>
+      <app-gruposturno formControlName='grupos2' [(ngModel)]="liceo.grupos2">
+        <app-grupo *ngFor='let key of Object.keys(liceo.grupos2)'
+          [value]='liceo.grupos2[key]' [index]='key' (quitar)='eliminarGrupo(2, $event)'>
+        </app-grupo>
+      </app-gruposturno>
+      <div class='alert alert-danger'
+        *ngIf='liceoForm.controls.grupos2.errors'>
+        <p *ngIf='liceoForm.controls.grupos2.errors.required'>Se requieren los grupos de este turno.</p>
+      </div>
+    </fieldset>
+
+    <fieldset class='form-group'>
+      <legend class="text-left"><strong> Turno 3 </strong>
+        <span class="pull-right" (click)="addGrupo(3)"
+          data-toggle="tooltip" title="Agregar Grupo">
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+        </span>
+      </legend>
+      <app-gruposturno formControlName='grupos3' [(ngModel)]="liceo.grupos3">
+        <app-grupo *ngFor='let key of Object.keys(liceo.grupos3)'
+          [value]='liceo.grupos3[key]' [index]='key' (quitar)='eliminarGrupo(3, $event)'>
+        </app-grupo>
+      </app-gruposturno>
+      <div class='alert alert-danger'
+        *ngIf='liceoForm.controls.grupos3.errors'>
+        <p *ngIf='liceoForm.controls.grupos3.errors.required'>Se requieren los grupos de este turno.</p>
+      </div>
+    </fieldset>
+
+    </div>
+    </div>
   <!--
   <div class='row'>
   <div class="card p-3 ">

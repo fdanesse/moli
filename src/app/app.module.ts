@@ -27,16 +27,17 @@ import { CheckboxComponent } from './componentes/multicheckboxcontroller/checkbo
 import { NotfoundComponent } from './views/notfound/notfound.component';
 
 import { AdminliceosComponent } from './views/adminliceos/adminliceos.component';
-import { GruposComponent } from './componentes/grupos/grupos.component';
-import { GrupoComponent } from './componentes/grupos/grupo.component';
-import { TelefonosComponent } from './componentes/telefonos/telefonos.component';
-import { TelefonoComponent } from './componentes/telefonos/telefono.component';
-import { EmailsComponent } from './componentes/emails/emails.component';
-import { EmailComponent } from './componentes/emails/email.component';
+// import { TelefonosComponent } from './componentes/telefonos/telefonos.component';
+// import { TelefonoComponent } from './componentes/telefonos/telefono.component';
+// import { EmailsComponent } from './componentes/emails/emails.component';
+// import { EmailComponent } from './componentes/emails/email.component';
 
 import { LiceosService } from './servicios/liceos/liceos.service';
-import { GrsComponent } from './componentes/grs/grs.component';
-import { GrssComponent } from './componentes/grs/grss.component';
+
+import { HorariosturnoComponent } from './componentes/horariosturno/horariosturno.component';
+import { HoraclaseComponent } from './componentes/horariosturno/horaclase.component';
+import { GruposturnoComponent } from './componentes/gruposturno/gruposturno.component';
+import { GrupoComponent } from './componentes/gruposturno/grupo.component';
 
 // https://hassantariqblog.wordpress.com/2016/10/12/angular2-template-parse-errors-add-custom_elements_schema-to-the-ngmodule-schemas/
 
@@ -52,14 +53,17 @@ import { GrssComponent } from './componentes/grs/grss.component';
     NotfoundComponent,
     AdminliceosComponent,
 
-    GruposComponent,
-    GrupoComponent,
-    TelefonosComponent,
-    TelefonoComponent,
-    EmailsComponent,
-    EmailComponent,
-    GrsComponent,
-    GrssComponent
+    // GruposComponent,
+    // GrupoComponent,
+    // TelefonosComponent,
+    // TelefonoComponent,
+    // EmailsComponent,
+    // EmailComponent,
+
+    HorariosturnoComponent,
+    HoraclaseComponent,
+    GruposturnoComponent,
+    GrupoComponent
   ],
   imports: [
     BrowserModule,
