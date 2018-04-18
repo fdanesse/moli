@@ -15,10 +15,7 @@ export class Liceomodel {
     // public adscriptos: Array<string> = [],
     // public docentes: Array<string> = [],
 
-    public horarios: Object = {}, // {0: ['07:20', '08:00']},
-
-    /*
-    public turno1 = {
+    public horarios1: Object = {
       0: ['07:20', '08:00'],
       1: ['08:00', '08:45'],
       2: ['08:50', '09:35'],
@@ -27,7 +24,7 @@ export class Liceomodel {
       5: ['11:10', '11:55'],
       6: ['12:00', '12:45']
     },
-    public turno2 = {
+    public horarios2: Object = {
       0: ['12:50', '13:30'],
       1: ['13:30', '14:15'],
       2: ['14:20', '15:05'],
@@ -36,8 +33,17 @@ export class Liceomodel {
       5: ['16:45', '17:25'],
       6: ['17:30', '18:15']
     },
-    public turno3 = {},
+    public horarios3: Object = {
+      0: ['18:45', '19:15'],
+      1: ['19:15', '19:45'],
+      2: ['19:50', '20:20'],
+      3: ['20:20', '20:50'],
+      4: ['20:55', '21:25'],
+      5: ['21:30', '22:00'],
+      6: ['22:00', '22:30']
+    }
 
+    /*
     public grupos1 = {
       0: ['1º', '1'],
       1: ['1º', '2'],

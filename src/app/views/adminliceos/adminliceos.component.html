@@ -20,6 +20,7 @@
   </fieldset>
   </div>
 
+
 <!-- FORMULARIO -->
 <form novalidate [formGroup]="liceoForm" (ngSubmit)="save()">
   <!-- IDENTIDAD -->
@@ -45,30 +46,6 @@
             placeholder='creador' [(ngModel)]='liceo.creador' formControlName='creador'>
         </div>
       </fieldset>
-
-
-
-      <fieldset class='form-group'>
-        <legend class="text-left"><strong> ***** </strong>
-          <span class="pull-right" (click)="addHora()"
-            data-toggle="tooltip" title="Agregar Grupo">
-            <i class="fa fa-plus-square" aria-hidden="true"></i>
-          </span>
-        </legend>
-        <app-grss formControlName='horarios' [(ngModel)]="liceo.horarios">
-          <app-grs *ngFor='let key of Object.keys(liceo.horarios)'
-            [value]='liceo.horarios[key]' [index]='key' (quitar)='eliminarHora($event)'></app-grs>
-        </app-grss>
-        <!--
-        <div class='alert alert-danger'
-          *ngIf='perfilForm.controls.roles.errors'>
-          <p *ngIf='perfilForm.controls.roles.errors.required'>¿Qúe roles ocupas?</p>
-        </div>
-        -->
-      </fieldset>
-
-
-
 
       <fieldset class='form-group no-form-group'>
         <legend>Nombre</legend>
@@ -160,27 +137,64 @@
   </div>
 
   <!-- HORARIOS -->
-  <!--
   <div class='row'>
   <div class="card p-3 ">
     <div class='card-header'><h5>Horarios</h5></div>
     <div class="card-body">
-    <fieldset class='form-group' *ngFor='let key of Object.keys(horarios)'>
-      <legend>Turno {{key}}
-        <span class="pull-right" (click)="addHora(key)"
+    <fieldset class='form-group'>
+      <legend class="text-left"><strong> Turno 1 </strong>
+        <span class="pull-right" (click)="addHora(1)"
           data-toggle="tooltip" title="Agregar Grupo">
           <i class="fa fa-plus-square" aria-hidden="true"></i>
         </span>
       </legend>
-      <div class='alert alert-warning' *ngIf='horarios[key].length==0'>
-        Agrega horarios de clase en este turno.
+      <app-grss formControlName='horarios1' [(ngModel)]="liceo.horarios1">
+        <app-grs *ngFor='let key of Object.keys(liceo.horarios1)'
+          [value]='liceo.horarios1[key]' [index]='key' (quitar)='eliminarHora(1, $event)'></app-grs>
+      </app-grss>
+      <div class='alert alert-danger'
+        *ngIf='liceoForm.controls.horarios1.errors'>
+        <p *ngIf='liceoForm.controls.horarios1.errors.required'>Se requieren los horarios de este turno.</p>
       </div>
-      <app-turno [registros]='horarios[key]'></app-turno>
     </fieldset>
+
+    <fieldset class='form-group'>
+      <legend class="text-left"><strong> Turno 2 </strong>
+        <span class="pull-right" (click)="addHora(2)"
+          data-toggle="tooltip" title="Agregar Grupo">
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+        </span>
+      </legend>
+      <app-grss formControlName='horarios2' [(ngModel)]="liceo.horarios2">
+        <app-grs *ngFor='let key of Object.keys(liceo.horarios2)'
+          [value]='liceo.horarios2[key]' [index]='key' (quitar)='eliminarHora(2, $event)'></app-grs>
+      </app-grss>
+      <div class='alert alert-danger'
+        *ngIf='liceoForm.controls.horarios2.errors'>
+        <p *ngIf='liceoForm.controls.horarios2.errors.required'>Se requieren los horarios de este turno.</p>
+      </div>
+    </fieldset>
+
+    <fieldset class='form-group'>
+      <legend class="text-left"><strong> Turno 3 </strong>
+        <span class="pull-right" (click)="addHora(3)"
+          data-toggle="tooltip" title="Agregar Grupo">
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+        </span>
+      </legend>
+      <app-grss formControlName='horarios3' [(ngModel)]="liceo.horarios3">
+        <app-grs *ngFor='let key of Object.keys(liceo.horarios3)'
+          [value]='liceo.horarios3[key]' [index]='key' (quitar)='eliminarHora(3, $event)'></app-grs>
+      </app-grss>
+      <div class='alert alert-danger'
+        *ngIf='liceoForm.controls.horarios3.errors'>
+        <p *ngIf='liceoForm.controls.horarios3.errors.required'>Se requieren los horarios de este turno.</p>
+      </div>
+    </fieldset>
+
     </div>
   </div>
   </div>
-  -->
 
   <!-- GRUPOS -->
   <!--
@@ -204,7 +218,8 @@
   </div>
   </div>
   -->
-<div class='col-md-12 botonera'>
+
+<div class='row'>
   <button type='submit'
     class='btn btn-success'>Guardar</button> <!-- [disabled]='liceoForm.pristine || !liceoForm.valid' -->
   <!--<button type='reset' class='btn btn-warning' (click)='liceoForm.reset()'
@@ -214,6 +229,7 @@
 </div>
 
 </form>
+
 
 <div class='row'>
   <div class="card p-3">
@@ -248,7 +264,7 @@
       <h5>misliceos:</h5>
     </div>
     <div class="card-body">
-      <pre>{{ misliceos }}</pre>
+      <pre>{{ misliceos | json}}</pre>
     </div>
   </div>
 

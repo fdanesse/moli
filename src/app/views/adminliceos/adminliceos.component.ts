@@ -43,12 +43,7 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
     'Treinta y Tres', 'Rocha'];
 
   public liceo: Liceomodel = new Liceomodel();
-
   /*
-  public turno1 = new FormControl('', [Validators.nullValidator]);
-  public turno2 = new FormControl('', [Validators.nullValidator]);
-  public turno3 = new FormControl('', [Validators.nullValidator]);
-
   public grupos1 = new FormControl('', [Validators.nullValidator]);
   public grupos2 = new FormControl('', [Validators.nullValidator]);
   public grupos3 = new FormControl('', [Validators.nullValidator]);
@@ -61,7 +56,6 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
     departamento: new FormControl('', [Validators.required]),
     // telefonos: new FormControl('', [Validators.required]),
     // emails: new FormControl('', [Validators.required]),
-    // turno1: this.turno1, turno2: this.turno2, turno3: this.turno3,
     // grupos1: this.grupos1, grupos2: this.grupos2, grupos3: this.grupos3,
     uid: new FormControl('', [Validators.required]),
     creador: new FormControl('', [Validators.required]),
@@ -69,13 +63,10 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
     // administrativos: new FormControl('', [Validators.nullValidator]),
     // adscriptos: new FormControl('', [Validators.nullValidator]),
     // docentes: new FormControl('', [Validators.nullValidator])
-    horarios: new FormControl('', [Validators.required])
+    horarios1: new FormControl('', [Validators.required]),
+    horarios2: new FormControl('', [Validators.required]),
+    horarios3: new FormControl('', [Validators.required])
   });
-
-  /*
-  public grupos = {1: this.liceo.grupos1, 2: this.liceo.grupos2, 3: this.liceo.grupos3};
-  public horarios = {1: this.liceo.turno1, 2: this.liceo.turno2, 3: this.liceo.turno3};
-  */
 
   constructor(
     public userLogged: UserloggedService,
@@ -119,13 +110,35 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
     }
   }
 
-  addHora() {
-    const x = Object.keys(this.liceo.horarios);
-    this.liceo.horarios[x.length] = ['00:00', '00:45'];
+  addHora(id: number) {
+    switch (id) {
+      case 1:
+        const x = Object.keys(this.liceo.horarios1);
+        this.liceo.horarios1[x.length] = ['00:00', '00:45'];
+        break;
+      case 2:
+        const y = Object.keys(this.liceo.horarios2);
+        this.liceo.horarios2[y.length] = ['00:00', '00:45'];
+        break;
+      case 3:
+        const z = Object.keys(this.liceo.horarios3);
+        this.liceo.horarios3[z.length] = ['00:00', '00:45'];
+        break;
+    }
   }
 
-  eliminarHora(index) {
-    delete this.liceo.horarios[index];
+  eliminarHora(id: number, index: string) {
+    switch (id) {
+      case 1:
+        delete this.liceo.horarios1[index];
+        break;
+      case 2:
+        delete this.liceo.horarios2[index];
+        break;
+      case 3:
+        delete this.liceo.horarios3[index];
+        break;
+    }
   }
 
   /*
@@ -137,22 +150,7 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
     this.liceo.emails.push('');
   }
 
-  addHora(id: string) {
-    switch (id) {
-      case '1':
-        const x = Object.keys(this.liceo.turno1);
-        this.liceo.turno1[x.length] = ['00:00', '00:45'];
-        break;
-      case '2':
-        const y = Object.keys(this.liceo.turno2);
-        this.liceo.turno2[y.length] = ['00:00', '00:45'];
-        break;
-      case '3':
-        const z = Object.keys(this.liceo.turno3);
-        this.liceo.turno3[z.length] = ['00:00', '00:45'];
-        break;
-    }
-  }
+
 
   addGrupo(id: string) {
     switch (id) {

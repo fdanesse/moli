@@ -27,8 +27,6 @@ import { CheckboxComponent } from './componentes/multicheckboxcontroller/checkbo
 import { NotfoundComponent } from './views/notfound/notfound.component';
 
 import { AdminliceosComponent } from './views/adminliceos/adminliceos.component';
-import { TurnoComponent } from './componentes/turno/turno.component';
-import { RegistroComponent } from './componentes/turno/registro.component';
 import { GruposComponent } from './componentes/grupos/grupos.component';
 import { GrupoComponent } from './componentes/grupos/grupo.component';
 import { TelefonosComponent } from './componentes/telefonos/telefonos.component';
@@ -54,8 +52,6 @@ import { GrssComponent } from './componentes/grs/grss.component';
     NotfoundComponent,
     AdminliceosComponent,
 
-    TurnoComponent,
-    RegistroComponent,
     GruposComponent,
     GrupoComponent,
     TelefonosComponent,
@@ -63,8 +59,7 @@ import { GrssComponent } from './componentes/grs/grss.component';
     EmailsComponent,
     EmailComponent,
     GrsComponent,
-    GrssComponent,
-
+    GrssComponent
   ],
   imports: [
     BrowserModule,
