@@ -82,15 +82,23 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
     public liceosService: LiceosService
   ) {}
 
-
-
   changedLiceo(event) {
     console.log('Changed Liceo:', event.target.value);
     this.liceo = this.misliceos[event.target.value];
   }
 
   deleteLiceo() {
-    console.log('DeleteLiceo:');
+    this.liceosService.delete(this.liceo['uid']);
+  }
+
+  save() {
+    // FIXME: Establecer Criterios de validacion del formulario
+    if (!this.liceoForm.valid) {
+      alert ('El formulario no es válido');
+    }else {
+      // this.liceo['creador'] = this.user.uid;
+      this.liceosService.save(this.liceo['uid'], this.liceo);
+    }
   }
 
   newLiceo() {
@@ -107,10 +115,18 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
       const t = d.getTime().toString();
       this.liceo['uid'] = t;
     }else {
-      alert('Debes tener un usuario en la aplicación y estar logueado con el para poder realizar esta acción.');
+      alert('Debes tener un usuario en la aplicación y estar logueado con él para poder realizar esta acción.');
     }
   }
 
+  addHora() {
+    const x = Object.keys(this.liceo.horarios);
+    this.liceo.horarios[x.length] = ['00:00', '00:45'];
+  }
+
+  eliminarHora(index) {
+    delete this.liceo.horarios[index];
+  }
 
   /*
   addTelefono() {
@@ -166,7 +182,7 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
     this.loginSubscription = this.userLogged.obs.subscribe(user => {
       this.user = Object.assign({}, user);
       if (this.user && this.user.uid) {
-        console.log('*** Usuario Logueado', this.user.uid);
+        // console.log('*** Usuario Logueado', this.user.uid);
         if (this.misliceosSubscription) {
           this.misliceosSubscription.unsubscribe();
         }
@@ -215,17 +231,4 @@ export class AdminliceosComponent implements OnInit, OnDestroy {
     }
   }
 
-  save() {
-    // FIXME: Establecer Criterios de validacion del formulario
-    if (!this.liceoForm.valid) {
-      alert ('El formulario no es válido');
-    }else {
-      // this.liceo['creador'] = this.user.uid;
-      this.liceosService.saveLiceo(this.liceo['uid'], this.liceo);
-    }
-  }
-
-  delete() {
-    // this.userData.deleteUser(this.user.uid);
-  }
 }

@@ -25,7 +25,7 @@
   <!-- IDENTIDAD -->
   <div class='row'>
   <div class="card p-3 ">
-    <div class='card-header'><h5>Identidad</h5></div>
+    <div class='card-header'><h5>Identidad</h5>Formulario válido: <pre>{{ liceoForm.valid }}</pre>  </div>
     <div class="card-body">
 
       <fieldset class='form-group no-form-group'>
@@ -49,15 +49,16 @@
 
 
       <fieldset class='form-group'>
-        <legend class="text-left"><strong> *****: </strong></legend>
+        <legend class="text-left"><strong> ***** </strong>
+          <span class="pull-right" (click)="addHora()"
+            data-toggle="tooltip" title="Agregar Grupo">
+            <i class="fa fa-plus-square" aria-hidden="true"></i>
+          </span>
+        </legend>
         <app-grss formControlName='horarios' [(ngModel)]="liceo.horarios">
-          <app-grs *ngFor='let key of Object.keys(liceo.horarios)' [index]='key' [value]='liceo.horarios[key]'></app-grs>
+          <app-grs *ngFor='let key of Object.keys(liceo.horarios)'
+            [value]='liceo.horarios[key]' [index]='key' (quitar)='eliminarHora($event)'></app-grs>
         </app-grss>
-        <!--
-        <app-grs formControlName='horarios' [(ngModel)]="liceo.horarios">
-          <app-gr *ngFor='let h of liceo.horarios; index as id;' [index]='id' [value]='h'></app-gr>
-        </app-grs>
-        -->
         <!--
         <div class='alert alert-danger'
           *ngIf='perfilForm.controls.roles.errors'>
